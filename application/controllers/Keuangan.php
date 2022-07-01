@@ -14,13 +14,19 @@ class Keuangan extends CI_Controller
         $data['user'] = $this->db->get_where('tb_user', ['email' =>
         $this->session->userdata('email')])->row_array();
 
-        $data['km'] = $this->db->get_where('tb_kas')->result_array();
+        //$data['km'] = $this->db->get_where('tb_kas')->result_array();
+        $data['km'] = $this->db->select('*')
+		->from('tb_kas')
+		->join('tb_kas_kategori', 'tb_kas_kategori.id_kategori = tb_kas.id_kategori')
+		->join('tb_user', 'tb_user.id_user = tb_kas.id_user')->get()
+		->result_array();
+
         $data['kat'] = $this->db->get_where('tb_kas_kategori')->result_array();
 
         $this->form_validation->set_rules('kd_transaksi', 'Kode Transaksi', 'required');
         $this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
-        $this->form_validation->set_rules('pemasukan', 'pemasukan', 'required');
-        $this->form_validation->set_rules('dokumentasi', 'Dokumentasi', 'required');
+        $this->form_validation->set_rules('pemasukan', 'Pemasukan', 'required');
+        //$this->form_validation->set_rules('dokumentasi', 'Dokumentasi', 'required');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);

@@ -21,7 +21,7 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Kode Transaksi</th>
-                        <th scope="col">Tanggal Transaksi</th>
+                      
                         <th scope="col">Kategori</th>
                         <th scope="col">Petugas</th>
                         <th scope="col">Keterangan</th>
@@ -35,9 +35,9 @@
                         <tr>
                             <th scope="row"><?= $i; ?></th>
                             <td><?= $s['kd_transaksi']; ?></td>
-                            <td><?= date('d F Y', $s['date']); ?></td>
-                            <td><?= $s['kategori']; ?></td>
-                            <td><?= $s['petugas']; ?></td>
+                            
+                            <td><?= $s['nama_kategori']; ?></td>
+                            <td><?= $s['name']; ?></td>
                             <td><?= $s['keterangan']; ?></td>
                             <td><?= $s['pemasukan']; ?></td>
                             <td>                              
@@ -85,7 +85,7 @@
                             <input type="text" class="form-control" id="keterangan" name="keterangan" placeholder="Keterangan">
                         </div>
                         <div class="mb-3">
-                            <input type="text" class="form-control" id="pemasukan" name="pemasukan" placeholder="Pemasukan">
+                            <input type="number" class="form-control" id="pemasukan" name="pemasukan" placeholder="Pemasukan">
                         </div>
                         <div class=" form-group row">
                             <div class="col-sm-2">File</div>
