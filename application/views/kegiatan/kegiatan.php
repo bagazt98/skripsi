@@ -32,7 +32,7 @@
                 </thead>
                 <tbody>          
                 <?php $i = 1; ?>   
-                    <?php foreach ($ak as $s) : ?>
+                    <?php foreach ($kegi as $s) : ?>
                         <tr>
                             <th scope="row"><?= $i; ?></th>
                             <td><?= date('d F Y', $s['tanggal']); ?></td>

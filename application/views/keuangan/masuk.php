@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-lg">
             <div class="form-group row">
-                <?= form_error('km', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
+                <?= form_error('sk', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
                 <?= $this->session->flashdata('message'); ?>
                 <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModal">Tambah Baru</a>
                 <div class="col-lg-3">
@@ -21,7 +21,7 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Kode Transaksi</th>
-                      
+                        <th scope="col">Tanggal Transaksi</th>
                         <th scope="col">Kategori</th>
                         <th scope="col">Petugas</th>
                         <th scope="col">Keterangan</th>
@@ -29,20 +29,20 @@
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>
-                <tbody>          
-                <?php $i = 1; ?>   
-                    <?php foreach ($km as $s) : ?>
+                <tbody>
+                    <?php $i = 1; ?>
+                    <?php foreach ($daftar_kas as $kas) : ?>
                         <tr>
-                            <th scope="row"><?= $i; ?></th>
-                            <td><?= $s['kd_transaksi']; ?></td>
-                            
-                            <td><?= $s['nama_kategori']; ?></td>
-                            <td><?= $s['name']; ?></td>
-                            <td><?= $s['keterangan']; ?></td>
-                            <td><?= $s['pemasukan']; ?></td>
-                            <td>                              
-                                <a href="<?= base_url('keuangan/masukubah/') . $s['id']; ?>" class="badge rounded-pill bg-success">Edit</a>
-                                <a href="<?= base_url('keuangan/masukhapus/') . $s['id']; ?>" class="badge rounded-pill bg-danger">Delete</a>
+                            <td><?= $kas['date'] ?></td>
+                            <td><?= $kas['kd_transaksi'] ?></td>
+                            <td><?= ($kas['date']) ?></td>
+                            <td><?= $kas['nama_kategori'] ?></td>
+                            <td><?= $kas['name'] ?></td>
+                            <td><?= $kas['keterangan'] ?></td>
+                            <td><?= ($kas['pemasukan'] === null) ? '-' : ($kas['pemasukan']) ?></td>
+                            <td>
+                                <a href="<?= base_url('keuangan/masukubah/') . $kas['id'];  ?>" class="badge rounded-pill bg-success">Edit</a>
+                                <a href="<?= base_url('keuangan/masukhapus/') . $kas['id']; ?> ?>" class="badge rounded-pill bg-danger">Delete</a>
                             </td>
                         </tr>
                         <?php $i++; ?>
@@ -64,7 +64,7 @@
                 </div>
                 <form action="<?= base_url('keuangan/masuk'); ?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
-                        
+
                         <div class="mb-3">
                             <input type="text" class="form-control" id="kd_transaksi" name="kd_transaksi" placeholder="Kode Transaksi">
                         </div>
@@ -74,18 +74,16 @@
                         <div class="mb-3">
                             <select name="kategori" id="kategori" class="form-control">
                                 <option value="">Kategori</option>
-                                <?php foreach ($kat as $k) { ?>
-                                    <option value="<?= $k['id_kategori']; ?>">
-                                        <?= $k['nama_kategori']; ?>
-                                    </option>
-                                <?php } ?>
+                                <?php foreach ($kategori as $kat) : ?>
+                                    <option value="<?= $kat->id_kategori ?>"><?= $kat->nama_kategori ?></option>
+                                <?php endforeach; ?>
                             </select>
                         </div>
                         <div class="mb-3">
                             <input type="text" class="form-control" id="keterangan" name="keterangan" placeholder="Keterangan">
                         </div>
                         <div class="mb-3">
-                            <input type="number" class="form-control" id="pemasukan" name="pemasukan" placeholder="Pemasukan">
+                            <input type="number" class="form-control" id="pemasukan" name="pemasukan" placeholder="Pemasukan" pattern="^([0-9.]+)">
                         </div>
                         <div class=" form-group row">
                             <div class="col-sm-2">File</div>
@@ -110,7 +108,7 @@
             </div>
         </div>
     </div>
-    
+
 
 
 </div>

@@ -13,6 +13,14 @@ class Admin extends CI_Controller
         $data['title'] = 'Dashboard';
         $data['user'] = $this->db->get_where('tb_user', ['email' =>
         $this->session->userdata('email')])->row_array();
+        $data['kas_masjid'] = $this->m_dashboard->getKasMasjid();
+        $data['zakat_fitrah'] = $this->m_dashboard->getZakatFitrahUang();
+        $data['zakat_mal'] = $this->m_dashboard->getZakatMalUang();
+        $data['transaksi_terakhir'] = $this->m_dashboard->transaksiTerakhir();
+        $data['agenda_hari_ini'] = $this->m_dashboard->getAgendaToday();
+        $data['inventaris'] = $this->m_dashboard->getStokBarang();
+
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
