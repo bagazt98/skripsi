@@ -68,8 +68,14 @@ class Home extends CI_Controller
 	}
 	public function pk()
 	{
-		$data['user'] = $this->m_home->pkWhere(['id_user' => $this->uri->segment(3)])->result_array();
 		$data['brt'] = $this->m_home->pkWhere(['id_kategori' => $this->uri->segment(3)])->result_array();
+		$this->load->view('templates/header-home');
+		$this->load->view('home/berita', $data);
+		$this->load->view('templates/footer-home');
+	}
+	public function uk()
+	{
+		$data['brt'] = $this->m_home->pkWhere(['id_user' => $this->uri->segment(3)])->result_array();
 		$this->load->view('templates/header-home');
 		$this->load->view('home/berita', $data);
 		$this->load->view('templates/footer-home');
