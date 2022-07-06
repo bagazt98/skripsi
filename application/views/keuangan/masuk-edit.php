@@ -24,14 +24,14 @@
                 <div class="col-sm-10">
                     <select name="kategori" id="kategori" class="form-control">
                         <option value="">Kategori</option>
-                            <?php foreach ($kat as $k) { ?>
+                        <?php foreach ($kat as $k) { ?>
                             <option value="<?= $k['id_kategori']; ?>">
-                                    <?= $k['nama_kategori']; ?>
+                                <?= $k['nama_kategori']; ?>
                             </option>
-                            <?php } ?>
+                        <?php } ?>
                     </select>
                 </div>
-            </div>            
+            </div>
             <div class="form-group row">
                 <label for="date" class="col-sm-2 col-form-label">Tanggal</label>
                 <div class="col-sm-10">
@@ -51,11 +51,11 @@
                 </div>
             </div>
 
-                <div class="col-sm-10">
-                    <button type="submit" class="btn btn-primary">Edit</button>
-                </div>
-        </div>
-    </form>
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Edit</button>
+            </div>
+
+            </form>
         </div>
     </div>
 

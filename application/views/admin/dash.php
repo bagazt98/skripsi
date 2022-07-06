@@ -93,7 +93,7 @@
                         <canvas id="sumber-kas" class="transaction-chart"></canvas>
 
                         <?php foreach ($transaksi_terakhir as $transaksi) : ?>
-                            <div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
+                            <div class=" d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
                                 <div class="text-md-left text-xl-left col-xl-7 col-md-12 col-sm-12">
                                     <h6 class="mb-1"><?= $transaksi->keterangan ?></h6>
                                     <p class="text-muted mb-0"><?= ($transaksi->date) ?></p>
@@ -122,7 +122,7 @@
                                             <p class="text-muted mb-0">Narasumber: <?= $agenda->narasumber ?></p>
                                         </div>
                                         <div class="mr-auto text-sm-right pt-2 pt-sm-0">
-                                            <p class="text-muted"><?= $agenda->jam_mulai ?> - <?= $agenda->jam_selesai ?></p>
+                                            <p class="text-muted"><?= $agenda->mulai ?> - <?= $agenda->selesai ?></p>
                                             <p class="text-muted mb-0"><?= $agenda->jenis_kegiatan ?></p>
                                         </div>
                                     </div>

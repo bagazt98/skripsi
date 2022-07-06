@@ -8,11 +8,13 @@ class Admin extends CI_Controller
         parent::__construct();
         is_logged_in();
     }
+
     public function index()
     {
         $data['title'] = 'Dashboard';
         $data['user'] = $this->db->get_where('tb_user', ['email' =>
         $this->session->userdata('email')])->row_array();
+
         $data['kas_masjid'] = $this->m_dashboard->getKasMasjid();
         $data['zakat_fitrah'] = $this->m_dashboard->getZakatFitrahUang();
         $data['zakat_mal'] = $this->m_dashboard->getZakatMalUang();
@@ -27,17 +29,12 @@ class Admin extends CI_Controller
         $this->load->view('admin/dash', $data);
         $this->load->view('templates/footer');
     }
-    public function coba()
+    public function get_sumber_kas()
     {
-        $data['title'] = 'Cobain';
-        $data['user'] = $this->db->get_where('tb_user', ['email' =>
-        $this->session->userdata('email')])->row_array();
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('admin/coba', $data);
-        $this->load->view('templates/footer');
+        $result = $this->m_dashboard->chartKas();
+        $this->output->set_content_type('application/json')->set_output(json_encode($result));
     }
+
     public function roleUbah()
     {
         $data['title'] = 'Ubah Role';
@@ -167,14 +164,13 @@ class Admin extends CI_Controller
                 }
             }
             $roles = $this->input->post('roles');
-            $is_active = $this->input->post('is_active');
             $data = [
                 'name' => $nama,
                 'email' => $email,
                 'img' => $new_image,
                 'password' => password_hash(('123456'), PASSWORD_DEFAULT),
                 'id_roles' => $roles,
-                'is_active' => $is_active,
+                'is_active' => 1,
                 'date_created' => time()
             ];
             $this->db->insert('tb_user', $data);

@@ -28,8 +28,8 @@
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>
-                <tbody>          
-                <?php $i = 1; ?>   
+                <tbody>
+                    <?php $i = 1; ?>
                     <?php foreach ($dm as $s) : ?>
                         <tr>
                             <th scope="row"><?= $i; ?></th>
@@ -38,7 +38,7 @@
                             <td><?= $s['alamat']; ?></td>
                             <td><?= $s['no_telpon']; ?></td>
                             <td><?= $s['petugas']; ?></td>
-                            <td>                              
+                            <td>
                                 <a href="<?= base_url('mustahik/daftarubah/') . $s['id']; ?>" class="badge rounded-pill bg-success">Edit</a>
                                 <a href="<?= base_url('mustahik/daftarhapus/') . $s['id']; ?>" class="badge rounded-pill bg-danger">Delete</a>
                             </td>
@@ -62,28 +62,28 @@
                 </div>
                 <form action="<?= base_url('mustahik/daftar'); ?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
-                        
+
                         <div class="mb-3">
                             <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Lengkap">
                         </div>
                         <div class="col-md-16">
-                      <div class="form-group">
-                          <select name="kategori" id="kategori" class="form-control text-black" required="required">
-                            <option value="">Pilih Kategori</option>
-                            <option value="fakir">Fakir</option>
-                            <option value="miskin">Miskin</option>
-                            <option value="riqab">Riqab</option>
-                            <option value="gharim">Gharim</option>
-                            <option value="ibnu sabil">Ibnu Sabil</option>
-                            <option value="mualaf">Mualaf</option>
-                            <option value="amil zakat">Amil Zakat</option>
-                            <option value="yatim">Yatim</option>
-                            <option value="piatu">Piatu</option>
-                            <option value="janda">Janda</option>
-                            <option value="fi sabilillah">Fi Sabilillah</option>
-                          </select>
-                      </div>
-                  </div>
+                            <div class="form-group">
+                                <select name="kategori" id="kategori" class="form-control text-black" required="required">
+                                    <option value="">Pilih Kategori</option>
+                                    <option value="fakir">Fakir</option>
+                                    <option value="miskin">Miskin</option>
+                                    <option value="riqab">Riqab</option>
+                                    <option value="gharim">Gharim</option>
+                                    <option value="ibnu sabil">Ibnu Sabil</option>
+                                    <option value="mualaf">Mualaf</option>
+                                    <option value="amil zakat">Amil Zakat</option>
+                                    <option value="yatim">Yatim</option>
+                                    <option value="piatu">Piatu</option>
+                                    <option value="janda">Janda</option>
+                                    <option value="fi sabilillah">Fi Sabilillah</option>
+                                </select>
+                            </div>
+                        </div>
                         <div class="mb-3">
                             <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat">
                         </div>
@@ -100,7 +100,7 @@
             </div>
         </div>
     </div>
-    
+
 
 
 </div>

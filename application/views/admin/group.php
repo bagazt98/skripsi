@@ -83,14 +83,6 @@
                                 <?php } ?>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="1" name="is_active" id="is_active">
-                                <label class="form-check-label" for="is_active">
-                                    Active?
-                                </label>
-                            </div>
-                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -29,20 +29,20 @@
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>
-                <tbody>          
-                <?php $i = 1; ?>   
-                    <?php foreach ($bm as $s) : ?>
+                <tbody>
+                    <?php $i = 1; ?>
+                    <?php foreach ($barang as $s) : ?>
                         <tr>
                             <th scope="row"><?= $i; ?></th>
-                            <td><?= $s['kd_barang']; ?></td>
-                            <td><?= date('d F Y', $s['tgl_pendataan']); ?></td>
-                            <td><?= $s['petugas']; ?></td>
+                            <td><?= $s['kode_barang']; ?></td>
+                            <td><?= $s['tgl_pendataan']; ?></td>
+                            <td><?= $s['name']; ?></td>
                             <td><?= $s['nama_barang']; ?></td>
                             <td><?= $s['kuantitas_masuk']; ?></td>
                             <td><?= $s['keterangan']; ?></td>
-                            <td>                              
-                                <a href="<?= base_url('inventaris/masukubah/') . $s['id']; ?>" class="badge rounded-pill bg-success">Edit</a>
-                                <a href="<?= base_url('inventaris/masukhapus/') . $s['id']; ?>" class="badge rounded-pill bg-danger">Delete</a>
+                            <td>
+                                <a href="<?= base_url('inventaris/masukubah/') . $s['id_barang']; ?>" class="badge rounded-pill bg-success">Edit</a>
+                                <a href="<?= base_url('inventaris/masukhapus/') . $s['id_barang']; ?>" class="badge rounded-pill bg-danger">Delete</a>
                             </td>
                         </tr>
                         <?php $i++; ?>
@@ -64,18 +64,91 @@
                 </div>
                 <form action="<?= base_url('inventaris/masuk'); ?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
-                        
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="kd_barang" name="kd_barang" placeholder="Kode Barang">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="hidden" name="kode_barang" id="kode_barang" value="KB">
+                                <input type="hidden" name="hash" id="hash" value="">
+                                <div class="form-group">
+                                    <label for="date">Tanggal *</label>
+                                    <input type="date" id="date" name="tgl_pendataan" class="form-control" required="required">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="nama_barang">Nama Barang *</label>
+                                    <input type="text" id="nama_barang" name="nama_barang" class="form-control" placeholder="Nama Barang" required="required">
+                                </div>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="nama_barang" name="nama_barang" placeholder="Nama Barang">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="keterangan">Keterangan</label>
+                                    <input type="text" id="keterangan" name="keterangan" class="form-control" placeholder="Keterangan">
+                                </div>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="kuantitas" name="kuantitas" placeholder="kuantitas">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="kuantitas_masuk">Kuantitas Masuk *</label>
+                                    <input type="text" id="kuantitas_masuk" name="kuantitas_masuk" class="form-control" placeholder="0.0" pattern="^([0-9.]+)" required="required">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="satuan">Satuan *</label>
+                                    <input type="text" id="satuan" name="satuan" class="form-control" placeholder="Satuan" required="required">
+                                </div>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="keterangan" name="keterangan" placeholder="keterangan">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="id_kategori">Dana Pembelian dari</label>
+                                    <input type="hidden" name="hidden_kategori" id="hidden_kategori" value="">
+                                    <select name="id_kategori" id="id_kategori" class="form-control text-black">
+                                        <option value="">Pilih Kategori</option>
+                                        <?php foreach ($saldo_kas as $kat) : ?>
+
+                                            <option value="<?= $kat['id_kategori'] ?>" data-saldo="<?= $kat['saldo'] ?>"><?= $kat['nama_kategori'] ?></option>
+                                        <?php endforeach; ?>
+
+                                    </select>
+                                    <small class="text-danger">Dipilih jika barang masuk dibeli menggunakan kas masjid.</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="saldo">Saldo</label>
+                                    <input type="text" id="saldo" name="saldo" class="form-control" placeholder="0.0" readonly="readonly">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="pengeluaran">Pengeluaran</label>
+                                    <input type="text" id="pengeluaran" name="pengeluaran" class="form-control" placeholder="0.0" pattern="^([0-9.]+)">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Dokumentasi</label>
+                                    <input type="hidden" name="dokumentasi_old" id="dokumentasi_old">
+                                    <input type="file" name="dokumentasi" id="dokumentasi_barang" class="file-upload-default">
+                                    <div class="input-group col-xs-12">
+                                        <input type="text" class="form-control file-upload-info" disabled placeholder="Unggah Dokumentasi">
+                                        <span class="input-group-append">
+                                            <button class="file-upload-browse btn btn-primary cari-foto" type="button">Cari...</button>
+                                        </span>
+                                    </div>
+                                    <small class="text-danger">Maksimal 5MB dengan ekstensi jpg, jpeg, atau png.</small>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -87,7 +160,7 @@
             </div>
         </div>
     </div>
-    
+
 
 
 </div>

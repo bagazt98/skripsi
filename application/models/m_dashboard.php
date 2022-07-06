@@ -13,17 +13,17 @@ class m_dashboard extends CI_Model
     public function getZakatFitrahUang()
     {
         $this->db->select('
-			((SELECT SUM(jumlah_zakat) FROM tb_zakat_fitrah WHERE status = "masuk" AND bentuk_zakat = "uang tunai") -
-			(SELECT SUM(jumlah_zakat) FROM tb_zakat_fitrah WHERE status = "keluar" AND bentuk_zakat = "uang tunai")) AS sisa_zakat_fitrah');
-        return $this->db->get('tb_zakat_fitrah')->row();
+			((SELECT SUM(jumlah_zakat) FROM tb_fitrah WHERE status = "masuk" AND bentuk_zakat = "uang tunai") -
+			(SELECT SUM(jumlah_zakat) FROM tb_fitrah WHERE status = "keluar" AND bentuk_zakat = "uang tunai")) AS sisa_zakat_fitrah');
+        return $this->db->get('tb_fitrah')->row();
     }
 
     public function getZakatMalUang()
     {
         $this->db->select('
-			((SELECT SUM(jumlah_zakat) FROM tb_zakat_mal WHERE status = "masuk" AND satuan_zakat = "RUPIAH") -
-			(SELECT SUM(jumlah_zakat) FROM tb_zakat_mal WHERE status = "keluar" AND satuan_zakat = "RUPIAH")) AS sisa_zakat_mal');
-        return $this->db->get('tb_zakat_mal')->row();
+			((SELECT SUM(jumlah_zakat) FROM tb_mal WHERE status = "masuk" AND satuan_zakat = "RUPIAH") -
+			(SELECT SUM(jumlah_zakat) FROM tb_mal WHERE status = "keluar" AND satuan_zakat = "RUPIAH")) AS sisa_zakat_mal');
+        return $this->db->get('tb_mal')->row();
     }
 
     public function chartKas()
@@ -31,13 +31,13 @@ class m_dashboard extends CI_Model
         $sumberKas = [];
         $jumlah = [];
 
-        $this->db->select('SUM(a.pemasukan) AS jumlah, b.kategori');
-        $this->db->join('tb_kategori_kas b', 'a.id_kategori = b.id_kategori', 'left');
+        $this->db->select('SUM(a.pemasukan) AS jumlah, b.nama_kategori');
+        $this->db->join('tb_kas_kategori b', 'a.id_kategori = b.id_kategori', 'left');
         $this->db->group_by('a.id_kategori');
-        $sumber = $this->db->get('tb_kas_masjid a')->result();
+        $sumber = $this->db->get('tb_kas a')->result();
 
         foreach ($sumber as $value) {
-            $sumberKas[] = $value->kategori;
+            $sumberKas[] = $value->nama_kategori;
             $jumlah[] = $value->jumlah;
         }
 
@@ -46,19 +46,19 @@ class m_dashboard extends CI_Model
 
     public function transaksiTerakhir()
     {
-        $this->db->select('a.keterangan, a.date, a.pemasukan, a.pemasukan, a.pengeluaran, b.kategori');
-        $this->db->join('tb_kategori_kas b', 'a.id_kategori = b.id_kategori', 'left');
-        $this->db->order_by('a.id_transaksi', 'desc');
-        return $this->db->get('tb_kas_masjid a', 3)->result();
+        $this->db->select('a.keterangan, a.date, a.pemasukan, a.pemasukan, a.pengeluaran, b.nama_kategori');
+        $this->db->join('tb_kas_kategori b', 'a.id_kategori = b.id_kategori', 'left');
+        $this->db->order_by('a.id', 'desc');
+        return $this->db->get('tb_kas a', 3)->result();
     }
 
     public function getAgendaToday()
     {
-        $this->db->select('a.judul_kegiatan, a.tanggal, a.jam_mulai, a.jam_selesai, a.narasumber, b.jenis_kegiatan');
+        $this->db->select('a.judul_kegiatan, a.tanggal, a.mulai, a.selesai, a.narasumber, b.jenis_kegiatan');
         $this->db->join('tb_jenis_kegiatan b', 'a.id_jenis = b.id_jenis', 'inner');
         $this->db->where('a.tanggal', date('Y-m-d'));
-        $this->db->order_by('a.jam_mulai', 'desc');
-        return $this->db->get('tb_kegiatan a')->result();
+        $this->db->order_by('a.mulai', 'desc');
+        return $this->db->get('tb_agenda a')->result();
     }
 
     public function getStokBarang()

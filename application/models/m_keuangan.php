@@ -28,7 +28,7 @@ class m_keuangan extends CI_Model
 	}
 	public function inputDataKas($data)
 	{
-		return $this->db->insert('tb_kas', $data);
+		return $this->db->insert('tb_kas', $data) ? true : false;
 	}
 	private function _pengeluaran($id_kategori)
 	{
@@ -72,6 +72,7 @@ class m_keuangan extends CI_Model
 		return $saldoKas;
 	}
 
+
 	public function getKm()
 	{
 		return $this->db->get('tb_kas');
@@ -84,9 +85,26 @@ class m_keuangan extends CI_Model
 	{
 		$this->db->update('tb_kas', $data, $where);
 	}
-
 	public function hapusKm($where)
 	{
 		$this->db->delete('tb_kas', $where);
+	}
+
+	public function getKat()
+	{
+		return $this->db->get('tb_kas_kategori');
+	}
+	public function katWhere($where)
+	{
+		return $this->db->get_where('tb_kas_kategori', $where);
+	}
+	public function updateKat($data = null, $where = null)
+	{
+		$this->db->update('tb_kas_kategori', $data, $where);
+	}
+
+	public function hapusKat($where)
+	{
+		$this->db->delete('tb_kas_kategori', $where);
 	}
 }

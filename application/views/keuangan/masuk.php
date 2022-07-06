@@ -33,7 +33,7 @@
                     <?php $i = 1; ?>
                     <?php foreach ($daftar_kas as $kas) : ?>
                         <tr>
-                            <td><?= $kas['date'] ?></td>
+                            <th scope="row"><?= $i ?></th>
                             <td><?= $kas['kd_transaksi'] ?></td>
                             <td><?= ($kas['date']) ?></td>
                             <td><?= $kas['nama_kategori'] ?></td>

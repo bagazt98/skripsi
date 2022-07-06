@@ -28,33 +28,3 @@ function check_access($id_roles, $menu_id)
         return "checked='checked'";
     }
 }
-function check_access_dept($id_user, $dept_id)
-{
-    $ci = get_instance();
-    $ci->db->where('id_user', $id_user);
-    $ci->db->where('id_dept', $dept_id);
-    $result = $ci->db->get('user_access_dept');
-    if ($result->num_rows() > 0) {
-        return "checked='checked'";
-    }
-}
-function check_access_sec($id_user, $sec_id)
-{
-    $ci = get_instance();
-    $ci->db->where('id_user', $id_user);
-    $ci->db->where('id_sec', $sec_id);
-    $result = $ci->db->get('user_access_sec');
-    if ($result->num_rows() > 0) {
-        return "checked='checked'";
-    }
-}
-function check_access_dir($id_user, $dir_id)
-{
-    $ci = get_instance();
-    $ci->db->where('id_user', $id_user);
-    $ci->db->where('id_dir', $dir_id);
-    $result = $ci->db->get('user_access_dir');
-    if ($result->num_rows() > 0) {
-        return "checked='checked'";
-    }
-}
