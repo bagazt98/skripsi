@@ -5,18 +5,18 @@
     <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
     <div class="roq">
         <div class="col-lg-8">
-            <?= form_open_multipart('inventaris/keluarubah/' . $bk['id']); ?>
+            <?= form_open_multipart('inventaris/keluarubah/' . $bk['id_barang']); ?>
 
             <div class="form-group row">
                 <label for="id" class="col-sm-2 col-form-label">ID</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="id" name="id" value="<?= $bk['id']; ?>" readonly>
+                    <input type="text" class="form-control" id="id" name="id" value="<?= $bk['id_barang']; ?>" readonly>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="id" class="col-sm-2 col-form-label">Kode Barang</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="kd_barang" name="kd_barang" value="<?= $bk['kd_barang']; ?>">
+                    <input type="text" class="form-control" id="kd_barang" name="kd_barang" value="<?= $bk['kode_barang']; ?>">
                 </div>
             </div>
             <div class="form-group row">
@@ -38,13 +38,13 @@
                 </div>
             </div>
 
-                <div class="col-sm-10">
-                    <button type="submit" class="btn btn-primary">Edit</button>
-                </div>
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Edit</button>
             </div>
-            </form>
         </div>
+        </form>
     </div>
+</div>
 
 </div>
 <!-- /.container-fluid -->
