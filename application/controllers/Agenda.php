@@ -19,7 +19,7 @@ class Agenda extends CI_Controller
         $data['kegi'] = $this->db->get('tb_agenda')->result_array();
 
 
-        $this->form_validation->set_rules('tanggal', 'Tanggal', 'required');
+        $this->form_validation->set_rules('date', 'Tanggal', 'required');
         $this->form_validation->set_rules('id_jenis', 'Jenis Agenda', 'required');
         $this->form_validation->set_rules('judul_kegiatan', 'Judul Kegiatan', 'required');
         $this->form_validation->set_rules('narasumber', 'Narasumber', 'required');
@@ -65,10 +65,13 @@ class Agenda extends CI_Controller
         $data['jenis'] = $this->m_agenda->getJenisAgenda();
         $data['ak'] = $this->m_agenda->akWhere(['id' => $this->uri->segment(3)])->row_array();
 
-        $this->form_validation->set_rules('kd_barang', 'Kode Barang', 'required');
-        $this->form_validation->set_rules('nama_barang', 'Nama Barang', 'required');
-        $this->form_validation->set_rules('kuantitas', 'Kuantitas Barang', 'required');
-        $this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
+        $this->form_validation->set_rules('date', 'Tanggal', 'required');
+        $this->form_validation->set_rules('judul_kegiatan', 'Judul Kegiatan', 'required');
+        $this->form_validation->set_rules('narasumber', 'Narasumber', 'required');
+        $this->form_validation->set_rules('mulai', 'Jam Mulai', 'required');
+        $this->form_validation->set_rules('selesai', 'Jam Selesai', 'required');
+        $this->form_validation->set_rules('keterangan', 'keterangan', 'required');
+
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
@@ -76,18 +79,22 @@ class Agenda extends CI_Controller
             $this->load->view('kegiatan/kegiatan-edit', $data);
             $this->load->view('templates/footer');
         } else {
-            $kd_barang = $this->input->post('kd_barang');
-            $nama_barang = $this->input->post('nama_barang');
-            $tanggal_pendataan = time();
-            $petugas = $data['user']['name'];
-            $kuantitas = $this->input->post('kuantitas');
+            $id_jenis = $this->input->post('jenis_kegiatan');
+            $id_user = $data['user']['id_user'];
+            $tanggal = $this->input->post('date');
+            $mulai = $this->input->post('mulai');
+            $selesai = $this->input->post('selesai');
+            $judul_kegiatan = $this->input->post('judul_kegiatan');
+            $narasumber = $this->input->post('narasumber');
             $keterangan = $this->input->post('keterangan');
             $data = [
-                'kd_barang' => $kd_barang,
-                'tgl_pendataan' => $tanggal_pendataan,
-                'petugas' => $petugas,
-                'nama_barang' => $nama_barang,
-                'kuantitas_masuk' => $kuantitas,
+                'id_jenis' => $id_jenis,
+                'id_user' => $id_user,
+                'tanggal' => $tanggal,
+                'mulai' => $mulai,
+                'selesai' => $selesai,
+                'judul_kegiatan' => $judul_kegiatan,
+                'narasumber' => $narasumber,
                 'keterangan' => $keterangan
             ];
             $this->m_agenda->updateAk($data, ['id' => $this->input->post('id')]);

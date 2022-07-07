@@ -20,9 +20,9 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="id" class="col-sm-2 col-form-label">Tanggal</label>
+                <label for="tgl_pendaataan" class="col-sm-2 col-form-label">Tanggal</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="tgl_pendataan" name="tgl_pendataan" value="<?= $bm['tgl_pendataan']; ?>">
+                    <input type="date" class="form-control" id="tgl_pendataan" name="tgl_pendataan" value="<?= $bk['tgl_pendataan']; ?>">
                 </div>
             </div>
             <div class="form-group row">
@@ -38,12 +38,38 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="id" class="col-sm-2 col-form-label">Keterangan</label>
+                <label for="keterangan">Keterangan</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="keterangan" name="keterangan" value="<?= $bk['keterangan']; ?>">
+                    <!-- <input type="text" id="keterangan" name="keterangan" class="form-control" placeholder="Keterangan"> -->
+                    <select name="keterangan" id="keterangan" class="form-control" required="required">
+                        <option value="">Pilih Keterangan</option>
+                        <option value="Rusak">Rusak</option>
+                        <option value="Hilang">Hilang</option>
+                        <option value="Habis Pakai">Habis Pakai</option>
+                        <option value="Dihibahkan">Dihibahkan</option>
+                        <option value="Dijual">Dijual</option>
+                    </select>
                 </div>
             </div>
-
+            <div class=" form-group row">
+                <div class="col-sm-2">File</div>
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div class="custom-file">
+                            <div class="col-sm-10">
+                                <input type="file" class="custom-file-input" id="dokumentasi" name="dokumentasi" required="required">
+                                <label class="custom-file-label" for="file">Choose file</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="satuan" class="col-sm-2 col-form-label">Bukti Dokumentasi</label>
+                <div class="col-sm-10">
+                    <img src="<?= base_url('assets/img/dokumentasi/'), $bk['dokumentasi']; ?>" class="card-img">
+                </div>
+            </div>
             <div class="col-sm-10">
                 <button type="submit" class="btn btn-primary">Edit</button>
             </div>
