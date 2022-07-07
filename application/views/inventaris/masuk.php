@@ -65,11 +65,11 @@
 				<form action="<?= base_url('inventaris/masuk'); ?>" method="post" enctype="multipart/form-data">
 					<div class="modal-body">
 
+						<input type="hidden" name="kode_barang" id="kode_barang" value="KB">
+						<input type="hidden" name="id_barang" id="id_barang" value="<?= $kdBrg; ?>">
+						<input type="hidden" name="hash" id="hash" value="">
 						<div class="row">
 							<div class="col-md-6">
-								<input type="hidden" name="kode_barang" id="kode_barang" value="KB">
-								<input type="hidden" name="id_barang" id="id_barang" value="<?= $kdBrg; ?>">
-								<input type="hidden" name="hash" id="hash" value="">
 								<div class="form-group">
 									<label for="date">Tanggal *</label>
 									<input type="date" id="date" name="tgl_pendataan" class="form-control" required="required">
