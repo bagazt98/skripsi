@@ -227,7 +227,7 @@ class Inventaris extends CI_Controller
 		} else {
 			$kd_barang = $this->input->post('kd_barang');
 			$nama_barang = $this->input->post('nama_barang');
-			$tanggal_pendataan = time();
+			$tanggal_pendataan = $this->input->post('tgl_pendataan');
 			$petugas = $data['user']['id_user'];
 			$kuantitas = $this->input->post('kuantitas');
 			$keterangan = $this->input->post('keterangan');
@@ -267,8 +267,8 @@ class Inventaris extends CI_Controller
 	}
 	public function keluarHapus()
 	{
-		$where = ['id' => $this->uri->segment(3)];
-		$this->m_inventaris->hapusBk($where);
+		$where = ['id_barang' => $this->uri->segment(3)];
+		$this->m_inventaris->hapusBm($where);
 		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Barang Keluar Telah Dihapus!</div>');
 		redirect('inventaris/keluar');
 	}
