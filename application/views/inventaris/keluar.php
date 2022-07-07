@@ -1,165 +1,153 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
-    <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
+	<!-- Page Heading -->
+	<h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
 
 
-    <div class="row">
-        <div class="col-lg">
-            <div class="form-group row">
-                <?= form_error('bk', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
-                <?= $this->session->flashdata('message'); ?>
-                <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModal">Tambah Baru</a>
-                <div class="col-lg-3">
+	<div class="row">
+		<div class="col-lg">
+			<div class="form-group row">
+				<?= form_error('bk', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
+				<?= $this->session->flashdata('message'); ?>
+				<a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModal">Tambah Baru</a>
+				<div class="col-lg-3">
 
-                </div>
+				</div>
 
-            </div>
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Kode Barang</th>
-                        <th scope="col">Tanggal Pendataan</th>
-                        <th scope="col">Petugas</th>
-                        <th scope="col">Nama Barang</th>
-                        <th scope="col">Kuantitas Keluar</th>
-                        <th scope="col">Keterangan</th>
-                        <th scope="col">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php $i = 1; ?>
-                    <?php foreach ($barang as $s) : ?>
-                        <tr>
-                            <th scope="row"><?= $i; ?></th>
-                            <td><?= $s['kode_barang']; ?></td>
-                            <td><?= $s['tgl_pendataan']; ?></td>
-                            <td><?= $s['name']; ?></td>
-                            <td><?= $s['nama_barang']; ?></td>
-                            <td><?= $s['kuantitas_keluar']; ?> <?= $s['satuan']; ?></td>
-                            <td><?= $s['keterangan']; ?></td>
-                            <td>
-                                <a href="<?= base_url('inventaris/keluarubah/') . $s['id_barang']; ?>" class="badge rounded-pill bg-success">Edit</a>
-                                <a href="<?= base_url('inventaris/keluarhapus/') . $s['id_barang']; ?>" class="badge rounded-pill bg-danger">Delete</a>
-                            </td>
-                        </tr>
-                        <?php $i++; ?>
+			</div>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Kode Barang</th>
+						<th scope="col">Tanggal Pendataan</th>
+						<th scope="col">Petugas</th>
+						<th scope="col">Nama Barang</th>
+						<th scope="col">Kuantitas Keluar</th>
+						<th scope="col">Keterangan</th>
+						<th scope="col">Aksi</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php $i = 1; ?>
+					<?php foreach ($barang as $s) : ?>
+						<tr>
+							<th scope="row"><?= $i; ?></th>
+							<td><?= $s['kode_barang']; ?></td>
+							<td><?= $s['tgl_pendataan']; ?></td>
+							<td><?= $s['name']; ?></td>
+							<td><?= $s['nama_barang']; ?></td>
+							<td><?= $s['kuantitas_keluar']; ?> <?= $s['satuan']; ?></td>
+							<td><?= $s['keterangan']; ?></td>
+							<td>
+								<a href="<?= base_url('inventaris/keluarubah/') . $s['id_barang']; ?>" class="badge rounded-pill bg-success">Edit</a>
+								<a href="<?= base_url('inventaris/keluarhapus/') . $s['id_barang']; ?>" class="badge rounded-pill bg-danger">Delete</a>
+							</td>
+						</tr>
+						<?php $i++; ?>
 
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah Baru</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="<?= base_url('inventaris/keluar'); ?>" method="post" enctype="multipart/form-data">
-                    <div class="modal-body">
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Tambah Baru</h5>
+					<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<form action="<?= base_url('inventaris/keluar'); ?>" method="post" enctype="multipart/form-data">
+					<div class="modal-body">
 
-                        <div class="row">
-                            <div class="col-md-6">
-                                <input type="hidden" name="kd_barang" id="kd_barang" value="BK">
-                                <div class="form-group">
-                                    <label for="date">Tanggal *</label>
-                                    <input type="date" id="date" name="tgl_pendataan" class="form-control" required="required">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="nama_barang">Nama Barang *</label>
-                                    <select name="nama_barang" id="nama_barang" class="form-control" required="required">
-                                        <option value="">Pilih Barang</option>
-                                        <?php foreach ($stok_list as $stok) : ?>
+						<div class="row">
+							<div class="col-md-6">
+								<input type="hidden" name="kd_barang" id="kd_barang" value="BK">
+								<div class="form-group">
+									<label for="date">Tanggal *</label>
+									<input type="date" id="date" name="tgl_pendataan" class="form-control" required="required">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="nama_barang">Nama Barang *</label>
+									<select name="nama_barang" id="nama_barang" class="form-control" required="required">
+										<option value="">Pilih Barang</option>
+										<?php foreach ($stok_list as $stok) : ?>
 
-                                            <option value="<?= $stok['nama_barang'] ?>" data-stok="<?= $stok['stok'] ?>"><?= $stok['nama_barang'] ?></option>
-                                        <?php endforeach; ?>
+											<option value="<?= $stok['nama_barang'] ?>" data-stok="<?= $stok['stok'] ?>"><?= $stok['nama_barang'] ?></option>
+										<?php endforeach; ?>
 
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="keterangan">Keterangan</label>
-                                    <!-- <input type="text" id="keterangan" name="keterangan" class="form-control" placeholder="Keterangan"> -->
-                                    <select name="keterangan" id="keterangan" class="form-control" required="required">
-                                        <option value="">Pilih Keterangan</option>
-                                        <option value="Rusak">Rusak</option>
-                                        <option value="Hilang">Hilang</option>
-                                        <option value="Habis Pakai">Habis Pakai</option>
-                                        <option value="Dihibahkan">Dihibahkan</option>
-                                        <option value="Dijual">Dijual</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="stok_barang">Stok Barang</label>
-                                    <input type="text" id="stok_barang" name="stok" class="form-control" placeholder="0.0" readonly="readonly">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="kuantitas_keluar">Kuantitas Keluar *</label>
-                                    <input type="text" id="kuantitas_keluar" name="kuantitas_keluar" class="form-control" placeholder="0.0" pattern="^([0-9.]+)" required="required">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="satuan">Satuan *</label>
-                                    <input type="text" id="satuan" name="satuan" class="form-control" placeholder="Satuan" required="required">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Dokumentasi</label>
-                                    <input type="hidden" name="dokumentasi_old" id="dokumentasi_old">
-                                    <input type="file" name="dokumentasi" id="dokumentasi_barang" class="file-upload-default">
-                                    <div class="input-group col-xs-12">
-                                        <input type="text" class="form-control file-upload-info" disabled placeholder="Unggah Dokumentasi">
-                                        <span class="input-group-append">
-                                            <button class="file-upload-browse btn btn-primary cari-foto" type="button">Cari...</button>
-                                        </span>
-                                    </div>
-                                    <small class="text-danger">Maksimal 5MB dengan ekstensi jpg, jpeg, atau png.</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row bukti-dokumentasi">
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="dokumentasi">Bukti/Dokumentasi</label>
-                                    <div class="clearfix"></div>
-                                    <img src="" id="bukti_dokumentasi" alt="" class="img-thumbnail w-100">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Add</button>
-                    </div>
-                </form>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="form-group">
+									<label for="keterangan">Keterangan</label>
 
-            </div>
-        </div>
-    </div>
+									<select name="keterangan" id="keterangan" class="form-control" required="required">
+										<option value="">Pilih Keterangan</option>
+										<option value="Rusak">Rusak</option>
+										<option value="Hilang">Hilang</option>
+										<option value="Habis Pakai">Habis Pakai</option>
+										<option value="Dihibahkan">Dihibahkan</option>
+										<option value="Dijual">Dijual</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="form-group">
+									<label for="stok_barang">Stok Barang</label>
+									<input type="text" id="stok_barang" name="stok" class="form-control" placeholder="0.0" readonly="readonly">
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="kuantitas_keluar">Kuantitas Keluar *</label>
+									<input type="text" id="kuantitas_keluar" name="kuantitas_keluar" class="form-control" placeholder="0.0" pattern="^([0-9.]+)" required="required">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="satuan">Satuan *</label>
+									<input type="text" id="satuan" name="satuan" class="form-control" placeholder="Satuan" required="required">
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="form-group">
+									<label>Dokumentasi</label>
+									<input type="hidden" name="dokumentasi_old" id="dokumentasi_old">
+									<input type="file" name="dokumentasi" id="dokumentasi_barang" class="file-upload-default">
+									<small class="text-danger">
+										<p>Maksimal 3MB dengan ekstensi jpg, jpeg, atau png.
+										</p>
+									</small>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary">Add</button>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
 
 
 
