@@ -46,7 +46,7 @@
                             <td><?= ($s['satuan_zakat'] === "RUPIAH") ? ($s['jumlah_zakat']) : ($s['jumlah_zakat']) ?></td>
                             <td>
                                 <a href="<?= base_url('zakat/fitrahubah/') . $s['id_transaksi']; ?>" class="badge rounded-pill bg-success">Edit</a>
-                                <a href="<?= base_url('zakat/hapusFitrah1/') . $s['id_transaksi']; ?>" class="badge rounded-pill bg-danger">Delete</a>
+                                <a href="<?= base_url('zakat/malhapus/') . $s['id_transaksi']; ?>" class="badge rounded-pill bg-danger">Delete</a>
                             </td>
                         </tr>
                         <?php $i++; ?>
