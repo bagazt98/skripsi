@@ -107,4 +107,15 @@ class m_keuangan extends CI_Model
 	{
 		$this->db->delete('tb_kas_kategori', $where);
 	}
+
+	function kdbarangLast(){
+		$query = $this->db->select('AUTO_INCREMENT')
+		->from('information_schema.TABLES')
+		->where('TABLE_SCHEMA','surat')
+		->where('TABLE_NAME','tb_inventaris')
+		->get();
+$row = $query->last_row();
+$idPostfix = (int)substr($row->AUTO_INCREMENT,0);
+return $idPostfix;
+	 }
 }

@@ -49,12 +49,7 @@
 					<input type="text" class="form-control" id="satuan" name="satuan" value="<?= $bm['satuan']; ?>">
 				</div>
 			</div>
-			<div class="form-group row">
-				<label for="satuan" class="col-sm-2 col-form-label">Satuan</label>
-				<div class="col-sm-10">
-					<input type="text" class="form-control" id="satuan" name="satuan" value="<?= $bm['satuan']; ?>">
-				</div>
-			</div>
+			
 			<div class="form-group row">
 				<label for="id_kategori" class="col-sm-2 col-form-label">Dana Pembelian dari</label>
 				<div class="col-sm-10">

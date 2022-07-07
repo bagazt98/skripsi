@@ -67,7 +67,14 @@ class m_inventaris extends CI_Model
     }
     public function bmWhere($where)
     {
-        return $this->db->get_where('tb_inventaris', $where);
+		$this->db->select ( 'a.* ,b.*' ); 
+    $this->db->join ( 'tb_kas b','b.id_barang = a.id_barang');
+	
+    
+        
+        //return $this->db->get('tb_inventaris a')->result_array();
+        return $this->db->get_where('tb_inventaris a', $where);
+		
     }
     public function updateBm($data = null, $where = null)
     {
@@ -78,4 +85,6 @@ class m_inventaris extends CI_Model
     {
         $this->db->delete('tb_inventaris', $where);
     }
+
+
 }
