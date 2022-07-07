@@ -16,7 +16,7 @@
 			<div class="form-group row">
 				<label for="id" class="col-sm-2 col-form-label">Tanggal</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="tgl_pendataan" name="tgl_pendataan" value="<?= $bm['tgl_pendataan']; ?>">
+					<input type="date" class="form-control" id="tgl_pendataan" name="tgl_pendataan" value="<?= $bm['tgl_pendataan']; ?>">
 				</div>
 			</div>
 			<div class="form-group row">
@@ -47,34 +47,6 @@
 				<label for="satuan" class="col-sm-2 col-form-label">Satuan</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" id="satuan" name="satuan" value="<?= $bm['satuan']; ?>">
-				</div>
-			</div>
-
-			<div class="form-group row">
-				<label for="id_kategori" class="col-sm-2 col-form-label">Dana Pembelian dari</label>
-				<div class="col-sm-10">
-					<input type="hidden" name="hidden_kategori" id="hidden_kategori" value="">
-					<select name="id_kategori" id="id_kategori" class="form-control text-black">
-						<option value="">Pilih Kategori</option>
-						<?php foreach ($saldo_kas as $kat) : ?>
-
-							<option value="<?= $kat['id_kategori'] ?>" data-saldo="<?= $kat['saldo'] ?>"><?= $kat['nama_kategori'] ?></option>
-						<?php endforeach; ?>
-
-					</select>
-					<small class="text-danger">Dipilih jika barang masuk dibeli menggunakan kas masjid.</small>
-				</div>
-			</div>
-			<div class="form-group row">
-				<label for="saldo" class="col-sm-2 col-form-label">saldo</label>
-				<div class="col-sm-10">
-					<input type="text" class="form-control" id="saldo" name="saldo" placeholder="0.0" readonly="readonly">
-				</div>
-			</div>
-			<div class="form-group row">
-				<label for="pengeluaran" class="col-sm-2 col-form-label">Pengeluaran</label>
-				<div class="col-sm-10">
-					<input type="text" id="pengeluaran" name="pengeluaran" class="form-control" value="<?= $bm['pengeluaran']; ?>" pattern="^([0-9.]+)">
 				</div>
 			</div>
 			<div class="col-sm-10">

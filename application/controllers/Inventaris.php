@@ -93,7 +93,7 @@ class Inventaris extends CI_Controller
 
 		$data['barang'] = $this->m_inventaris->getBarang('masuk');
 		$data['saldo_kas'] = $this->m_keuangan->getSaldoGroupByKategori();
-		$data['bm'] = $this->m_inventaris->bmWhere(['a.id_barang' => $this->uri->segment(3)])->row_array();
+		$data['bm'] = $this->m_inventaris->bmWhere(['id_barang' => $this->uri->segment(3)])->row_array();
 
 		$this->form_validation->set_rules('tgl_pendataan', 'Tanggal', 'required');
 		if ($this->form_validation->run() == false) {
@@ -103,12 +103,8 @@ class Inventaris extends CI_Controller
 			$this->load->view('inventaris/masuk-edit', $data);
 			$this->load->view('templates/footer');
 		} else {
-			$id_barang = $this->input->post('id_$id_barang');
-			$kd_barang = $this->input->post('kode_barang');
 			$nama_barang = $this->input->post('nama_barang');
 			$tanggal_pendataan = $this->input->post('tgl_pendataan');
-			$id_kategori = $this->input->post('id_kategori');
-			$pengeluaran = $this->input->post('pengeluaran');
 			$petugas = $data['user']['id_user'];
 			$kuantitas = $this->input->post('kuantitas_masuk');
 			$keterangan = $this->input->post('keterangan');
@@ -131,7 +127,6 @@ class Inventaris extends CI_Controller
 				}
 			}
 			$data = [
-
 				'nama_barang' => $nama_barang,
 				'id_user' => $petugas,
 				'keterangan' => $keterangan,
@@ -141,18 +136,7 @@ class Inventaris extends CI_Controller
 				'satuan' => $satuan,
 				'dokumentasi' => $dokumentasi
 			];
-
-			$dataKas = [
-				'id_barang' => $id_barang,
-				'id_kategori' => $id_kategori,
-				'id_user' => $petugas,
-				'keterangan' => $keterangan,
-				'date' => $tanggal_pendataan,
-				'pengeluaran' => $pengeluaran,
-				'dokumentasi' => $dokumentasi
-			];
-			$status = ($this->m_inventaris->updateBm($data, $id_barang) == true) ? 1 : 0;
-			if ($status === 1 && !empty($id_kategori)) $this->m_keuangan->updateKm($dataKas);
+			$this->m_inventaris->updateBm($data, ['id_barang' => $this->input->post('id')]);
 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Barang Masuk Telah Diubah!</div>');
 			redirect('inventaris/masuk');
 		}
