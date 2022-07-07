@@ -67,12 +67,11 @@ class m_inventaris extends CI_Model
     }
     public function bmWhere($where)
     {
-        return $this->db->get_where('tb_inventaris');
+        return $this->db->get_where('tb_inventaris', $where);
     }
-    public function updateBm($data, $where)
+    public function updateBm($data = null, $where = null)
     {
-        $this->db->where('kode_barang', ($where));
-        return $this->db->update('tb_inventaris', $data) ? true : false;
+        $this->db->update('tb_inventaris', $data, $where);
     }
 
     public function hapusBm($where)
