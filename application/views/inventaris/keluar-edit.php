@@ -20,6 +20,12 @@
                 </div>
             </div>
             <div class="form-group row">
+                <label for="id" class="col-sm-2 col-form-label">Tanggal</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="tgl_pendataan" name="tgl_pendataan" value="<?= $bm['tgl_pendataan']; ?>">
+                </div>
+            </div>
+            <div class="form-group row">
                 <label for="id" class="col-sm-2 col-form-label">Nama Barang</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="nama_barang" name="nama_barang" value="<?= $bk['nama_barang']; ?>">

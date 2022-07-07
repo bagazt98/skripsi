@@ -63,6 +63,54 @@ class Zakat extends CI_Controller
 			redirect('zakat/fitrah');
 		}
 	}
+	public function keluar()
+	{
+		$data['title'] = 'Zakat Fitrah Keluar';
+		$data['user'] = $this->db->get_where('tb_user', ['email' =>
+		$this->session->userdata('email')])->row_array();
+
+		$data['zakat'] = $this->m_fitrah->getZakatFitrah('keluar');
+		$data['fitrah'] = $this->db->get_where('tb_fitrah')->result_array();
+
+		$this->form_validation->set_rules('nama', 'Nama', 'required');
+
+		if ($this->form_validation->run() == false) {
+			$this->load->view('templates/header', $data);
+			$this->load->view('templates/sidebar', $data);
+			$this->load->view('templates/topbar', $data);
+			$this->load->view('zakat/fitrah', $data);
+			$this->load->view('templates/footer');
+		} else {
+
+			$status = $this->input->post('status');
+			$kode_transaksi = $this->input->post('kode_transaksi');
+			$nama = $this->input->post('nama');
+			$id_user = $data['user']['id_user'];
+			$date = $this->input->post('date');
+			$alamat = $this->input->post('alamat');
+			$no_telepon = $this->input->post('no_telepon');
+			$bentuk_zakat = $this->input->post('bentuk_zakat');
+			$satuan_zakat = $this->input->post('satuan_zakat');
+			$jumlah_jiwa = $this->input->post('jumlah_jiwa');
+			$jumlah_zakat = $this->input->post('jumlah_zakat');
+			$data = [
+				'kode_transaksi' => $kode_transaksi,
+				'nama' => $nama,
+				'status' => $status,
+				'id_user' => $id_user,
+				'date' => $date,
+				'alamat' => $alamat,
+				'no_telepon' => $no_telepon,
+				'bentuk_zakat' => $bentuk_zakat,
+				'satuan_zakat' => $satuan_zakat,
+				'jumlah_jiwa' => $jumlah_jiwa,
+				'jumlah_zakat' => $jumlah_zakat
+			];
+			$this->db->insert('tb_fitrah', $data);
+			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Zakat Fitrah Ditambahkan!</div>');
+			redirect('zakat/fitrah');
+		}
+	}
 	public function fitrahUbah()
 	{
 		$data['title'] = 'Ubah Zakat Fitrah';
