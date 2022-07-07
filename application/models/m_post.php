@@ -31,6 +31,19 @@ class m_post extends CI_Model
         $this->db->delete('tb_berita', $where);
     }
 
+    public function benerWhere($where)
+    {
+        return $this->db->get_where('tb_bener', $where);
+    }
+    public function updateBener($data = null, $where = null)
+    {
+        $this->db->update('tb_bener', $data, $where);
+    }
+    public function hapusBener($where)
+    {
+        $this->db->delete('tb_bener', $where);
+    }
+
     public function kategoriWhere($where)
     {
         return $this->db->get_where('tb_berita_kategori', $where);

@@ -136,7 +136,6 @@ class Post extends CI_Controller
 
 		$this->form_validation->set_rules('judul_bener', 'Judul Bener', 'required');
 		$this->form_validation->set_rules('isi_bener', 'Isi Bener', 'required');
-		$this->form_validation->set_rules('gambar', 'Gambar', 'required');
 
 		if ($this->form_validation->run() == false) {
 			$this->load->view('templates/header', $data);
@@ -167,10 +166,57 @@ class Post extends CI_Controller
 			$data = [
 				'judul_bener' => $judul_bener,
 				'isi_bener' => $isi_bener,
-				'gambar' => $new_file
+				'gambar' => $gambar
 			];
 			$this->db->insert('tb_bener', $data);
 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Banner Telah Ditambahkan!</div>');
+			redirect('post/banner');
+		}
+	}
+	public function benerUbah()
+	{
+		$data['title'] = 'Ubah Data Baner';
+		$data['user'] = $this->db->get_where('tb_user', ['email' =>
+		$this->session->userdata('email')])->row_array();
+
+		$data['bener'] = $this->m_post->benerWhere(['id' => $this->uri->segment(3)])->row_array();
+
+		$this->form_validation->set_rules('judul_bener', 'Judul Banner', 'required');
+		$this->form_validation->set_rules('isi_bener', 'Isi Banner', 'required');
+
+		if ($this->form_validation->run() == false) {
+			$this->load->view('templates/header', $data);
+			$this->load->view('templates/sidebar', $data);
+			$this->load->view('templates/topbar', $data);
+			$this->load->view('post/banner-edit', $data);
+			$this->load->view('templates/footer');
+		} else {
+			$judul_bener = $this->input->post('judul_bener');
+			$isi_bener = $this->input->post('isi_bener');
+			$gambar = $_FILES['gambar']['name'];
+			if ($gambar) {
+				$config['allowed_types'] = 'gif|jpg|png';
+				$config['max_size'] = '5120';
+				$config['upload_path'] = './assets/img/berita/';
+				$this->load->library('upload', $config);
+				if ($this->upload->do_upload('gambar')) {
+					$old_file = $data['brt']['gambar'];
+					if ($old_file != 'default.pdf') {
+						unlink(FCPATH . 'assets/img/berita/' . $old_file);
+					}
+					$new_file = $this->upload->data('file_name');
+					$this->db->set('gambar', $new_file);
+				} else {
+					echo $this->upload->display_errors();
+				}
+			}
+			$data = [
+				'judul_bener' => $judul_bener,
+				'isi_bener' => $isi_bener,
+				'gambar' => $gambar
+			];
+			$this->m_post->updateBener($data, ['id' => $this->input->post('id')]);
+			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Bener Telah Diubah!</div>');
 			redirect('post/banner');
 		}
 	}
