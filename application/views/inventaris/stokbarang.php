@@ -18,7 +18,7 @@
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th>Nama</th>
+						<th>Nama Barang</th>
 						<th>Kuantitas Masuk</th>
 						<th>Kuantitas Keluar</th>
 						<th>Stok Barang</th>
