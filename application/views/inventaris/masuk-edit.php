@@ -16,19 +16,13 @@
 			<div class="form-group row">
 				<label for="id" class="col-sm-2 col-form-label">Tanggal</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="tgl_pendataan" name="tgl_pendataan" value="<?= $bm['tgl_pendataan']; ?>">
+					<input type="date" class="form-control" id="tgl_pendataan" name="tgl_pendataan" value="<?= $bm['tgl_pendataan']; ?>">
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="id" class="col-sm-2 col-form-label">Nama Barang</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" id="nama_barang" name="nama_barang" value="<?= $bm['nama_barang']; ?>">
-				</div>
-			</div>
-			<div class="form-group row">
-				<label for="id" class="col-sm-2 col-form-label">Kuantitas Masuk</label>
-				<div class="col-sm-10">
-					<input type="text" class="form-control" id="kuantitas" name="kuantitas" value="<?= $bm['kuantitas_masuk']; ?>">
 				</div>
 			</div>
 			<div class="form-group row">
@@ -49,7 +43,7 @@
 					<input type="text" class="form-control" id="satuan" name="satuan" value="<?= $bm['satuan']; ?>">
 				</div>
 			</div>
-			
+
 			<div class="form-group row">
 				<label for="id_kategori" class="col-sm-2 col-form-label">Dana Pembelian dari</label>
 				<div class="col-sm-10">

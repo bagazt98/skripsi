@@ -14,7 +14,7 @@ class Inventaris extends CI_Controller
 		$data['user'] = $this->db->get_where('tb_user', ['email' =>
 		$this->session->userdata('email')])->row_array();
 
-		
+
 		$data['kdBrg'] = $this->m_keuangan->kdbarangLast();
 		$data['barang'] = $this->m_inventaris->getBarang('masuk');
 		$data['saldo_kas'] = $this->m_keuangan->getSaldoGroupByKategori();
@@ -79,7 +79,7 @@ class Inventaris extends CI_Controller
 				'dokumentasi' => $dokumentasi
 			];
 			$status = ($this->m_inventaris->inputDataBarang($data) == true) ? 1 : 0;
-			
+
 			if ($status === 1 && !empty($id_kategori)) $this->m_keuangan->inputDataKas($dataKas);
 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Barang Masuk Ditambahkan!</div>');
 			redirect('inventaris/masuk');
@@ -95,7 +95,7 @@ class Inventaris extends CI_Controller
 		$data['saldo_kas'] = $this->m_keuangan->getSaldoGroupByKategori();
 		$data['bm'] = $this->m_inventaris->bmWhere(['a.id_barang' => $this->uri->segment(3)])->row_array();
 
-		$this->form_validation->set_rules('kode_barang', 'Kode Barang', 'required');
+		$this->form_validation->set_rules('tgl_pendataan', 'Tanggal', 'required');
 		if ($this->form_validation->run() == false) {
 			$this->load->view('templates/header', $data);
 			$this->load->view('templates/sidebar', $data);
@@ -103,6 +103,7 @@ class Inventaris extends CI_Controller
 			$this->load->view('inventaris/masuk-edit', $data);
 			$this->load->view('templates/footer');
 		} else {
+			$id_barang = $this->input->post('id_barang');
 			$kd_barang = $this->input->post('kode_barang');
 			$nama_barang = $this->input->post('nama_barang');
 			$tanggal_pendataan = $this->input->post('tgl_pendataan');
@@ -111,6 +112,7 @@ class Inventaris extends CI_Controller
 			$petugas = $data['user']['id_user'];
 			$kuantitas = $this->input->post('kuantitas_masuk');
 			$keterangan = $this->input->post('keterangan');
+			$satuan = $this->input->post('satuan');
 			$dokumentasi = $_FILES['dokumentasi']['name'];
 			if ($dokumentasi) {
 				$config['allowed_types'] = 'gif|jpg|png';
@@ -132,13 +134,17 @@ class Inventaris extends CI_Controller
 				'kode_barang' => $kd_barang,
 				'nama_barang' => $nama_barang,
 				'id_user' => $petugas,
+				'keterangan' => $keterangan,
 				'tgl_pendataan' => $tanggal_pendataan,
 				'kuantitas_masuk' => $kuantitas,
 				'kuantitas_keluar' => 0,
-				'keterangan' => $keterangan
+				'satuan' => $satuan,
+				'dokumentasi' => $dokumentasi
 			];
+
 			$dataKas = [
 				'kd_transaksi' => $kd_barang,
+				'id_barang' => $id_barang,
 				'id_kategori' => $id_kategori,
 				'id_user' => $petugas,
 				'keterangan' => $keterangan,
