@@ -103,7 +103,7 @@ class Inventaris extends CI_Controller
 			$this->load->view('inventaris/masuk-edit', $data);
 			$this->load->view('templates/footer');
 		} else {
-			$id_barang = $this->input->post('id_barang');
+			$id_barang = $this->input->post('id_$id_barang');
 			$kd_barang = $this->input->post('kode_barang');
 			$nama_barang = $this->input->post('nama_barang');
 			$tanggal_pendataan = $this->input->post('tgl_pendataan');
@@ -131,7 +131,7 @@ class Inventaris extends CI_Controller
 				}
 			}
 			$data = [
-				'kode_barang' => $kd_barang,
+
 				'nama_barang' => $nama_barang,
 				'id_user' => $petugas,
 				'keterangan' => $keterangan,
@@ -143,7 +143,6 @@ class Inventaris extends CI_Controller
 			];
 
 			$dataKas = [
-				'kd_transaksi' => $kd_barang,
 				'id_barang' => $id_barang,
 				'id_kategori' => $id_kategori,
 				'id_user' => $petugas,
@@ -152,7 +151,7 @@ class Inventaris extends CI_Controller
 				'pengeluaran' => $pengeluaran,
 				'dokumentasi' => $dokumentasi
 			];
-			$status = ($this->m_inventaris->updateBm($data) == true) ? 1 : 0;
+			$status = ($this->m_inventaris->updateBm($data, $id_barang) == true) ? 1 : 0;
 			if ($status === 1 && !empty($id_kategori)) $this->m_keuangan->updateKm($dataKas);
 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Barang Masuk Telah Diubah!</div>');
 			redirect('inventaris/masuk');

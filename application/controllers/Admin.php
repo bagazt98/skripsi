@@ -26,7 +26,7 @@ class Admin extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('admin/dash', $data);
+        $this->load->view('dashboard/dash', $data);
         $this->load->view('templates/footer');
     }
     public function get_sumber_kas()
