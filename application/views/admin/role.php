@@ -49,7 +49,7 @@
 				<form action="<?= base_url('admin/role'); ?>" method="post">
 					<div class="modal-body">
 						<div class="mb-3">
-							<input type="text" class="form-control" id="rol" name="rol" placeholder="Role Name">
+							<input type="text" class="form-control" id="rol" name="rol" placeholder="nama jabatan">
 						</div>
 					</div>
 					<div class="modal-footer">

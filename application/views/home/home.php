@@ -12,7 +12,7 @@
 								<!-- tampilkan crud postingan baner -->
 								<h1 class="display-1 text-white animated slideInDown"><?= $b['judul_bener']; ?></h1>
 								<p class="fs-5 fw-medium text-white mb-4 pb-3"><?= $b['isi_bener']; ?></p>
-								<!-- <a href="<?= base_url('home/berita'); ?>" class="btn btn-primary py-3 px-5 animated slideInLeft">Read More</a> -->
+
 							</div>
 						</div>
 					</div>
@@ -91,10 +91,10 @@
 			<?php foreach ($brt as $s) : ?>
 				<div class="col-md-4 mt-5" data-wow-delay="0.1s">
 					<div class="card shadow-sm">
-						<a href="<?= base_url('home/post/') . $s['id']; ?>"><img src="<?= base_url('assets/img/berita/') . $s['gambar']; ?>" class="card-img-top" alt=""></a>
+						<a href="<?= base_url('home/post/') . $s['id']; ?>"><img max-width="80%" height="300px" width="250px" src="<?= base_url('assets/img/berita/') . $s['gambar']; ?>" class="card-img-top" alt=""></a>
 						<div class="card-body">
 							<h5 class="card-title"><?= $s['judul_berita']; ?></h5>
-							<p class="card-text"><small class="text-muted"><?= $s['name']; ?></small></p>
+							<p class="card-text">by. <small class="text-muted"><?= $s['name']; ?></small></p>
 						</div>
 					</div>
 				</div>
