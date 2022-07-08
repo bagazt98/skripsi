@@ -80,6 +80,15 @@
 	});
 </script>
 <script>
+	function rupiah(numb) {
+		return 'Rp. ' + (Number(numb)).toLocaleString('id-ID', {
+			style: 'decimal',
+			maximumFractionDigits: 2,
+			minimumFractionDigits: 2
+		});
+	}
+</script>
+<script>
 	$(function() {
 		var ctx = document.getElementById("sumber-kas").getContext("2d");
 		var json_url = baseURI + "/admin/get-sumber-kas";

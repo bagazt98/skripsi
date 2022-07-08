@@ -310,4 +310,9 @@ class Zakat extends CI_Controller
 			redirect('zakat/malkeluar');
 		}
 	}
+	public function rekapitulasi()
+	{
+		$data['rekap_zakat'] = $this->m_fitrah->rekapitulasiZakat();
+		$this->load->view('zakat/fitrah-rekap', $data);
+	}
 }
