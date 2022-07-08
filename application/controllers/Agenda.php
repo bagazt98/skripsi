@@ -131,6 +131,31 @@ class Agenda extends CI_Controller
             redirect('agenda/jenis');
         }
     }
+    public function jenisUbah()
+    {
+        $data['title'] = 'Ubah Jenis Kegiatan';
+        $data['user'] = $this->db->get_where('tb_user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+
+        $data['jenis'] = $this->m_agenda->jenisWhere(['id_jenis' => $this->uri->segment(3)])->row_array();
+
+        $this->form_validation->set_rules('jenis', 'Jenis Kegiatan', 'required');
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('kegiatan/kegiatan-jenis-edit', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $data = [
+                'jenis_kegiatan' => $this->input->post('jenis')
+            ];
+            $this->m_agenda->updateJk($data, ['id_jenis' => $this->input->post('id')]);
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">jenis Kas Telah Diubah!</div>');
+            redirect('agenda/jenis');
+        }
+    }
     public function jenisHapus()
     {
         $where = ['id_jenis' => $this->uri->segment(3)];

@@ -83,7 +83,7 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="date">Tanggal *</label>
-									<input type="date" id="date" name="tgl_pendataan" class="form-control" required="required">
+									<input type="date" id="date" name="date" class="form-control" required="required">
 								</div>
 							</div>
 							<div class="col-md-6">

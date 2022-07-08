@@ -18,7 +18,7 @@ class Inventaris extends CI_Controller
 		$data['no_otomatis'] = $this->m_inventaris->get_no_otomatis_bm();
 
 
-		$data['kdBrg'] = $this->m_keuangan->kdbarangLast();
+		// $data['kdBrg'] = $this->m_keuangan->kdbarangLast();
 		$data['barang'] = $this->m_inventaris->getBarang('masuk');
 		$data['saldo_kas'] = $this->m_keuangan->getSaldoGroupByKategori();
 		// $data['bm'] = $this->db->get_where('tb_bm')->result_array();
@@ -189,7 +189,7 @@ class Inventaris extends CI_Controller
 		$this->form_validation->set_rules('no3', 'Kode Barang', 'required');
 		$this->form_validation->set_rules('no4', 'Kode Barang', 'required');
 		$this->form_validation->set_rules('nama_barang', 'Nama Barang', 'required');
-		$this->form_validation->set_rules('kuantitas', 'Kuantitas Barang', 'required');
+		$this->form_validation->set_rules('kuantitas_keluar', 'Kuantitas Barang', 'required');
 		$this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
 
 		if ($this->form_validation->run() == false) {
@@ -204,7 +204,7 @@ class Inventaris extends CI_Controller
 			$kd_barang3 = $this->input->post('no3');
 			$kd_barang4 = $this->input->post('no4');
 			$nama_barang = $this->input->post('nama_barang');
-			$tanggal_pendataan = $this->input->post('tgl_pendataan');
+			$tanggal_pendataan = $this->input->post('date');
 			$petugas = $data['user']['id_user'];
 			$kuantitas = $this->input->post('kuantitas_keluar');
 			$keterangan = $this->input->post('keterangan');

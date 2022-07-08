@@ -328,4 +328,29 @@ class Keuangan extends CI_Controller
 		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Kategori Telah Dihapus!</div>');
 		redirect('keuangan/kategori');
 	}
+	public function kategoriUbah()
+	{
+		$data['title'] = 'Ubah Kategori Berita';
+		$data['user'] = $this->db->get_where('tb_user', ['email' =>
+		$this->session->userdata('email')])->row_array();
+
+		$data['kategori'] = $this->m_keuangan->katWhere(['id_kategori' => $this->uri->segment(3)])->row_array();
+
+		$this->form_validation->set_rules('kategori', 'Kategori Kas', 'required');
+
+		if ($this->form_validation->run() == false) {
+			$this->load->view('templates/header', $data);
+			$this->load->view('templates/sidebar', $data);
+			$this->load->view('templates/topbar', $data);
+			$this->load->view('keuangan/kategori-edit', $data);
+			$this->load->view('templates/footer');
+		} else {
+			$data = [
+				'nama_kategori' => $this->input->post('kategori')
+			];
+			$this->m_keuangan->updateKat($data, ['id_kategori' => $this->input->post('id')]);
+			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Kategori Kas Telah Diubah!</div>');
+			redirect('keuangan/kategori');
+		}
+	}
 }
