@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 08, 2022 at 03:14 AM
+-- Generation Time: Jul 08, 2022 at 04:24 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -64,7 +64,8 @@ CREATE TABLE `tb_bener` (
 --
 
 INSERT INTO `tb_bener` (`id`, `judul_bener`, `isi_bener`, `gambar`) VALUES
-(5, 'Pengabdian Masyarakat Nusa Mandiri', 'Pengabdian Masyarakat Nusa Mandiri Periode 2022', '20220627_135429.jpeg');
+(5, 'Pengabdian Masyarakat Nusa Mandiri', 'Pengabdian Masyarakat Nusa Mandiri Periode 2022', '20220627_135429.jpeg'),
+(7, 'Masjid Jami\' Al-hidayah', 'Kp. stangkle', 'alhidayah.png');
 
 -- --------------------------------------------------------
 
@@ -87,7 +88,8 @@ CREATE TABLE `tb_berita` (
 --
 
 INSERT INTO `tb_berita` (`id`, `id_kategori`, `judul_berita`, `isi_berita`, `gambar`, `id_user`, `tanggal`) VALUES
-(16, 8, 'Hewan kurban', '“Qurban‎” yang berarti dekat atau mendekatkan atau disebut juga Udhhiyah atau Dhahiyyah secara harfiah berarti hewan sembelihan.', 'hewan-kurban1.jpg', 20, '1657235580');
+(17, 8, 'Hewan kurban', '“Qurban‎” yang berarti dekat atau mendekatkan atau disebut juga Udhhiyah atau Dhahiyyah secara harfiah berarti hewan sembelihan.', 'hewan-kurban_(2).jpg', 20, '1657244346'),
+(18, 3, 'postingan pkm', 'kebutuhan skripsi mahasiswa unm test untuk upload', 'alhidayah.png', 20, '1657246215');
 
 -- --------------------------------------------------------
 
@@ -389,7 +391,7 @@ CREATE TABLE `tb_user` (
   `id_user` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
   `email` varchar(128) NOT NULL,
-  `img` varchar(128) DEFAULT 'default.jpg',
+  `img` varchar(128) NOT NULL,
   `password` varchar(256) DEFAULT 'e10adc3949ba59abbe56e057f20f883e',
   `id_roles` varchar(128) NOT NULL,
   `is_active` int(1) NOT NULL,
@@ -402,13 +404,13 @@ CREATE TABLE `tb_user` (
 
 INSERT INTO `tb_user` (`id_user`, `name`, `email`, `img`, `password`, `id_roles`, `is_active`, `date_created`) VALUES
 (20, 'Irvan', 'iqbalsatrio12@ymail.com', 'default.jpg', '$2y$10$9Sefo7XR4S2yBWFBDoFib.nCTAwdjLOrXmK7wOqHq0PT/cDuAp6rW', '1', 1, 1656419582),
-(25, 'H. Amin Fauzi, S.Pdi', 'bag1@gmail.com', 'WhatsApp_Image_2022-06-09_at_23_33_11.jpg', '$2y$10$kQIP1hA7xjYZgIB6yWPuDOmleXdDFEHMUjJ7KTM8vdg.alfsS7CL2', '6', 1, 1656817571),
+(25, 'H. Amin Fauzi, S.Pdi', 'bag1@gmail.com', 'default.jpg', '$2y$10$kQIP1hA7xjYZgIB6yWPuDOmleXdDFEHMUjJ7KTM8vdg.alfsS7CL2', '6', 1, 1656817571),
 (26, 'Irfansyah, SE', 'infansyah@gmail.com', 'default.jpg', '$2y$10$lMEZFnzrAznM0ze95AF.K.wFpOwFww9PdKhSnMr5HMoFWqPt/CU82', '7', 1, 1656817637),
 (27, 'Rohmat', 'rohmat@gmail.com', 'default.jpg', '$2y$10$DOVL1cez4DxvAX9zRPNjBOmCh4C/NM/Yz7EC896xyrdMjPKfa9.ue', '9', 1, 1656817661),
 (28, 'Kiki Dwi', 'kikidwi@gmail.com', 'default.jpg', '$2y$10$4DHhoF.2u0TVm02HxtLrvuRyzfYJa4hqsai1X2exm8qOIad.sWFTS', '11', 1, 1656817697),
-(29, 'Irwan', 'irwan@gmail.com', 'WhatsApp_Image_2022-06-09_at_23_33_114.jpg', '$2y$10$BUGAioZFO.mjuGrNRwsa8OIxOiwzhg42xrpH5T6Y/Sm3xIaXwFf5a', '10', 1, 1656817903),
+(29, 'Irwan', 'irwan@gmail.com', 'default.jpg', '$2y$10$BUGAioZFO.mjuGrNRwsa8OIxOiwzhg42xrpH5T6Y/Sm3xIaXwFf5a', '10', 1, 1656817903),
 (30, 'Ust. Sholeh, S.Pd', 'Sholeh@gmail.com', 'default.jpg', '$2y$10$qIDBBiUXLI3kBbyKHIjVBuonlHCKmAowSlhscGirDulQG4RprqJqi', '8', 1, 1656817980),
-(31, 'Ust. Ahmad Satiri', 'ahmadsatiri@gmail.com', 'default.jpg', '$2y$10$LyJju/qE/K.i69hkrHpWB.aQhAfmEnxeyIFtlIBHnS1SCqLpELIRG', '8', 1, 1656818053),
+(31, 'Ust. Ahmad Satiri', 'ahmadsatiri@gmail.com', 'default.jpgv', '$2y$10$LyJju/qE/K.i69hkrHpWB.aQhAfmEnxeyIFtlIBHnS1SCqLpELIRG', '8', 1, 1656818053),
 (32, 'Humaidi Imron, S.Ag', 'humaidiimron@gmail.com', 'default.jpg', '$2y$10$YFWJCc.sAdE4KjL1REXicOmj.91jwf95NAxHS//I2t.sULYgvzA2W', '8', 1, 1656818113),
 (33, 'Kiyai Amir Mahmud', 'amirmahmud@gmail.com', 'default.jpg', '$2y$10$nKmNfQByRbx2lalCdQWUtemoHFfCh8qRCtIUO258pD/uCwB/IX9Hy', '8', 1, 1656818198),
 (34, 'Kiyai Salman Mai', 'salmanmai@gmail.com', 'default.jpg', '$2y$10$OKaDKN0mYc4UCUD6mQP65uOtzus06YS3Z/PUwl1LulWe7gbHoQwSS', '8', 1, 1656818226),
@@ -716,13 +718,13 @@ ALTER TABLE `tb_agenda`
 -- AUTO_INCREMENT for table `tb_bener`
 --
 ALTER TABLE `tb_bener`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tb_berita`
 --
 ALTER TABLE `tb_berita`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `tb_berita_kategori`
