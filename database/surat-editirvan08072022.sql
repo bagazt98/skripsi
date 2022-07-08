@@ -389,7 +389,7 @@ CREATE TABLE `tb_user` (
   `id_user` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
   `email` varchar(128) NOT NULL,
-  `img` varchar(128) NOT NULL,
+  `img` varchar(128) DEFAULT 'default.jpg',
   `password` varchar(256) DEFAULT 'e10adc3949ba59abbe56e057f20f883e',
   `id_roles` varchar(128) NOT NULL,
   `is_active` int(1) NOT NULL,
@@ -401,18 +401,18 @@ CREATE TABLE `tb_user` (
 --
 
 INSERT INTO `tb_user` (`id_user`, `name`, `email`, `img`, `password`, `id_roles`, `is_active`, `date_created`) VALUES
-(20, 'Irvan', 'iqbalsatrio12@ymail.com', 'fb1.png', '$2y$10$9Sefo7XR4S2yBWFBDoFib.nCTAwdjLOrXmK7wOqHq0PT/cDuAp6rW', '1', 1, 1656419582),
+(20, 'Irvan', 'iqbalsatrio12@ymail.com', 'default.jpg', '$2y$10$9Sefo7XR4S2yBWFBDoFib.nCTAwdjLOrXmK7wOqHq0PT/cDuAp6rW', '1', 1, 1656419582),
 (25, 'H. Amin Fauzi, S.Pdi', 'bag1@gmail.com', 'WhatsApp_Image_2022-06-09_at_23_33_11.jpg', '$2y$10$kQIP1hA7xjYZgIB6yWPuDOmleXdDFEHMUjJ7KTM8vdg.alfsS7CL2', '6', 1, 1656817571),
-(26, 'Irfansyah, SE', 'infansyah@gmail.com', 'WhatsApp_Image_2022-06-09_at_23_33_111.jpg', '$2y$10$lMEZFnzrAznM0ze95AF.K.wFpOwFww9PdKhSnMr5HMoFWqPt/CU82', '7', 1, 1656817637),
-(27, 'Rohmat', 'rohmat@gmail.com', 'WhatsApp_Image_2022-06-09_at_23_33_112.jpg', '$2y$10$DOVL1cez4DxvAX9zRPNjBOmCh4C/NM/Yz7EC896xyrdMjPKfa9.ue', '9', 1, 1656817661),
-(28, 'Kiki Dwi', 'kikidwi@gmail.com', 'WhatsApp_Image_2022-06-09_at_23_33_113.jpg', '$2y$10$4DHhoF.2u0TVm02HxtLrvuRyzfYJa4hqsai1X2exm8qOIad.sWFTS', '11', 1, 1656817697),
+(26, 'Irfansyah, SE', 'infansyah@gmail.com', 'default.jpg', '$2y$10$lMEZFnzrAznM0ze95AF.K.wFpOwFww9PdKhSnMr5HMoFWqPt/CU82', '7', 1, 1656817637),
+(27, 'Rohmat', 'rohmat@gmail.com', 'default.jpg', '$2y$10$DOVL1cez4DxvAX9zRPNjBOmCh4C/NM/Yz7EC896xyrdMjPKfa9.ue', '9', 1, 1656817661),
+(28, 'Kiki Dwi', 'kikidwi@gmail.com', 'default.jpg', '$2y$10$4DHhoF.2u0TVm02HxtLrvuRyzfYJa4hqsai1X2exm8qOIad.sWFTS', '11', 1, 1656817697),
 (29, 'Irwan', 'irwan@gmail.com', 'WhatsApp_Image_2022-06-09_at_23_33_114.jpg', '$2y$10$BUGAioZFO.mjuGrNRwsa8OIxOiwzhg42xrpH5T6Y/Sm3xIaXwFf5a', '10', 1, 1656817903),
-(30, 'Ust. Sholeh, S.Pd', 'Sholeh@gmail.com', 'WhatsApp_Image_2022-06-09_at_23_33_115.jpg', '$2y$10$qIDBBiUXLI3kBbyKHIjVBuonlHCKmAowSlhscGirDulQG4RprqJqi', '8', 1, 1656817980),
-(31, 'Ust. Ahmad Satiri', 'ahmadsatiri@gmail.com', 'WhatsApp_Image_2022-06-09_at_23_33_116.jpg', '$2y$10$LyJju/qE/K.i69hkrHpWB.aQhAfmEnxeyIFtlIBHnS1SCqLpELIRG', '8', 1, 1656818053),
-(32, 'Humaidi Imron, S.Ag', 'humaidiimron@gmail.com', 'WhatsApp_Image_2022-06-09_at_23_33_117.jpg', '$2y$10$YFWJCc.sAdE4KjL1REXicOmj.91jwf95NAxHS//I2t.sULYgvzA2W', '8', 1, 1656818113),
-(33, 'Kiyai Amir Mahmud', 'amirmahmud@gmail.com', 'WhatsApp_Image_2022-06-09_at_23_33_118.jpg', '$2y$10$nKmNfQByRbx2lalCdQWUtemoHFfCh8qRCtIUO258pD/uCwB/IX9Hy', '8', 1, 1656818198),
-(34, 'Kiyai Salman Mai', 'salmanmai@gmail.com', 'WhatsApp_Image_2022-06-09_at_23_33_119.jpg', '$2y$10$OKaDKN0mYc4UCUD6mQP65uOtzus06YS3Z/PUwl1LulWe7gbHoQwSS', '8', 1, 1656818226),
-(36, 'diki', 'dikicobamasuk@gmail.com', 'diki_remove.png', '$2y$10$COnnIn41yKe3dGQumOLM6eXcNgWkFFaJEdK6jqayLSXXyf4adEgjm', '13', 1, 1657241140);
+(30, 'Ust. Sholeh, S.Pd', 'Sholeh@gmail.com', 'default.jpg', '$2y$10$qIDBBiUXLI3kBbyKHIjVBuonlHCKmAowSlhscGirDulQG4RprqJqi', '8', 1, 1656817980),
+(31, 'Ust. Ahmad Satiri', 'ahmadsatiri@gmail.com', 'default.jpg', '$2y$10$LyJju/qE/K.i69hkrHpWB.aQhAfmEnxeyIFtlIBHnS1SCqLpELIRG', '8', 1, 1656818053),
+(32, 'Humaidi Imron, S.Ag', 'humaidiimron@gmail.com', 'default.jpg', '$2y$10$YFWJCc.sAdE4KjL1REXicOmj.91jwf95NAxHS//I2t.sULYgvzA2W', '8', 1, 1656818113),
+(33, 'Kiyai Amir Mahmud', 'amirmahmud@gmail.com', 'default.jpg', '$2y$10$nKmNfQByRbx2lalCdQWUtemoHFfCh8qRCtIUO258pD/uCwB/IX9Hy', '8', 1, 1656818198),
+(34, 'Kiyai Salman Mai', 'salmanmai@gmail.com', 'default.jpg', '$2y$10$OKaDKN0mYc4UCUD6mQP65uOtzus06YS3Z/PUwl1LulWe7gbHoQwSS', '8', 1, 1656818226),
+(36, 'diki', 'dikicobamasuk@gmail.com', 'default.jpg', '$2y$10$COnnIn41yKe3dGQumOLM6eXcNgWkFFaJEdK6jqayLSXXyf4adEgjm', '13', 1, 1657241140);
 
 -- --------------------------------------------------------
 
