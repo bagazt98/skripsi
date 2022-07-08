@@ -4,7 +4,7 @@
     		<h1 class="mb-3"><?= $brt['judul_berita']; ?></h1>
 
     		<!-- menampilakan author dan kategori postingan-->
-    		<p>by. <a href="<?= base_url('home/uk/') . $brt['id_user']; ?>" class="text-decoration-none"><?= $brt['name']; ?> </a>Postingan
+    		<p><a href="<?= base_url('home/uk/') . $brt['id_user']; ?>" class="text-decoration-none"><?= $brt['name']; ?> </a>Postingan
     			<a href="<?= base_url('home/pk/') . $brt['id_kategori']; ?>" class="text-decoration-none"><?= $brt['kategori']; ?></a>
     		</p>
 
