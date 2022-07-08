@@ -14,6 +14,21 @@
 				</div>
 			</div>
 			<div class="form-group row">
+				<label for="id" class="col-sm-2 col-form-label">Kode Barang</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control col-lg-3" id="no2" name="no2" value="<?= $no_otomatis; ?>">/
+					<input type="text" class="form-control col-lg-2" id="no1" name="no1" value="BK">/
+					<select name="no3" id="no3" class="form-control col-lg-3">
+						<?php foreach ($array_bln as $b) { ?>
+							<option value="<?= $b; ?>" <?php if ($b == $bln) {
+															echo "selected";
+														} ?>><?= $b; ?></option>
+						<?php } ?>
+					</select>/
+					<input type="text" class="form-control col-lg-2" id="no4" name="no4" value="<?= date('Y'); ?>">
+				</div>
+			</div>
+			<div class="form-group row">
 				<label for="id" class="col-sm-2 col-form-label">Tanggal</label>
 				<div class="col-sm-10">
 					<input type="date" class="form-control" id="tgl_pendataan" name="tgl_pendataan" value="<?= $bm['tgl_pendataan']; ?>">

@@ -14,6 +14,7 @@ class m_home extends CI_Model
         $this->db->select('a.id_user, a.name, a.img, a.id_roles, b.nama_roles');
         $this->db->join('tb_roles b', 'a.id_roles = b.id_roles', 'inner');
         $this->db->order_by('id_roles', 'asc');
+        // $this->db->where('id !=', 1);
         return $this->db->get('tb_user a')->result_array();
     }
     public function getAgendaToday()

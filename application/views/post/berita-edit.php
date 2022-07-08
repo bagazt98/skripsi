@@ -37,6 +37,12 @@
                     </select>
                 </div>
             </div>
+            <div class="form-group row">
+                <label for="date" class="col-sm-2 col-form-label">Tanggal</label>
+                <div class="col-sm-10">
+                    <input type="date" class="form-control" id="date" name="date" value="<?= $berita['tanggal']; ?>">
+                </div>
+            </div>
             <div class=" form-group row">
                 <div class="col-sm-2">Gambar Berita</div>
                 <div class="col-sm-10">
@@ -51,13 +57,11 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="date" class="col-sm-2 col-form-label">Tanggal</label>
+                <label for="satuan" class="col-sm-2 col-form-label">Gambar Berita</label>
                 <div class="col-sm-10">
-                    <input type="date" class="form-control" id="date" name="date" value="<?= $berita['tanggal']; ?>">
+                    <img src="<?= base_url('assets/img/berita/'), $berita['gambar']; ?>" class="card-img">
                 </div>
             </div>
-
-
             <div class="col-sm-10">
                 <button type="submit" class="btn btn-primary">Edit</button>
             </div>

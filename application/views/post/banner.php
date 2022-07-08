@@ -8,11 +8,6 @@
     <div class="row">
         <div class="col-lg">
             <div class="form-group row">
-                <?php if (validation_errors()) : ?>
-                    <div class="alert alert-danger" role="alert">
-                        <?= validation_errors(); ?>
-                    </div>
-                <?php endif; ?>
                 <?= $this->session->flashdata('message'); ?>
                 <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModal">Tambah Baru</a>
                 <div class="col-lg-3">
@@ -24,8 +19,8 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Judul Berita</th>
-                        <th scope="col">Isi Berita</th>
+                        <th scope="col">Judul Banner</th>
+                        <th scope="col">Isi Banner</th>
                         <th scope="col">Gambar</th>
                         <th scope="col">Aksi</th>
                     </tr>
@@ -64,10 +59,10 @@
                     <div class="modal-body">
 
                         <div class="mb-3">
-                            <input type="text" class="form-control" id="judul_bener" name="judul_bener" placeholder="Judul Berita">
+                            <input type="text" class="form-control" id="judul_bener" name="judul_bener" placeholder="Judul Banner">
                         </div>
                         <div class="mb-3">
-                            <input type="text area" class="form-control" id="isi_bener" name="isi_bener" placeholder="Isi Berita">
+                            <input type="text area" class="form-control" id="isi_bener" name="isi_bener" placeholder="Isi Banner">
                         </div>
                         <div class=" form-group row">
                             <div class="col-sm-2">File</div>

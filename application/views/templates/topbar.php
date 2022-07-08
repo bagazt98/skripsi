@@ -32,7 +32,7 @@
 								<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
 								Edit Profile
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="<?= base_url('user') ?>">
+								<a class="dropdown-item" href="<?= base_url('user/changepassword') ?>">
 									<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
 									Ubah Password
 									<div class="dropdown-divider"></div>
