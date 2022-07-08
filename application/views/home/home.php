@@ -12,7 +12,7 @@
 								<!-- tampilkan crud postingan baner -->
 								<h1 class="display-1 text-white animated slideInDown"><?= $b['judul_bener']; ?></h1>
 								<p class="fs-5 fw-medium text-white mb-4 pb-3"><?= $b['isi_bener']; ?></p>
-								<!-- <a href="<?= base_url('home/berita'); ?>" class="btn btn-primary py-3 px-5 animated slideInLeft">Read More</a> -->
+
 							</div>
 						</div>
 					</div>
