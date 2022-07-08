@@ -10,9 +10,12 @@ class Inventaris extends CI_Controller
 	}
 	public function masuk()
 	{
+		$data['array_bln'] = array(1 => "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII");
+		$data['bln'] = $data['array_bln'][date('n')];
 		$data['title'] = 'Barang Masuk';
 		$data['user'] = $this->db->get_where('tb_user', ['email' =>
 		$this->session->userdata('email')])->row_array();
+		$data['no_otomatis'] = $this->m_inventaris->get_no_otomatis_bm();
 
 
 		$data['kdBrg'] = $this->m_keuangan->kdbarangLast();
@@ -20,7 +23,11 @@ class Inventaris extends CI_Controller
 		$data['saldo_kas'] = $this->m_keuangan->getSaldoGroupByKategori();
 		// $data['bm'] = $this->db->get_where('tb_bm')->result_array();
 
-		$this->form_validation->set_rules('kode_barang', 'Kode Barang', 'required');
+
+		$this->form_validation->set_rules('no1', 'Kode Barang', 'required');
+		$this->form_validation->set_rules('no2', 'Kode Barang', 'required');
+		$this->form_validation->set_rules('no3', 'Kode Barang', 'required');
+		$this->form_validation->set_rules('no4', 'Kode Barang', 'required');
 
 		if ($this->form_validation->run() == false) {
 			$this->load->view('templates/header', $data);
@@ -29,8 +36,11 @@ class Inventaris extends CI_Controller
 			$this->load->view('inventaris/masuk', $data);
 			$this->load->view('templates/footer');
 		} else {
+			$kd_barang1 = $this->input->post('no1');
+			$kd_barang2 = $this->input->post('no2');
+			$kd_barang3 = $this->input->post('no3');
+			$kd_barang4 = $this->input->post('no4');
 			$id_barang = $this->input->post('id_barang');
-			$kd_barang = $this->input->post('kode_barang');
 			$nama_barang = $this->input->post('nama_barang');
 			$petugas = $data['user']['id_user'];
 			$keterangan = $this->input->post('keterangan');
@@ -57,7 +67,7 @@ class Inventaris extends CI_Controller
 				}
 			}
 			$data = [
-				'kode_barang' => $kd_barang,
+				'kode_barang' => $kd_barang2 . "/" . $kd_barang1 . "/" . $kd_barang3 . "/" . $kd_barang4,
 				'nama_barang' => $nama_barang,
 				'id_user' => $petugas,
 				'keterangan' => $keterangan,
@@ -69,7 +79,7 @@ class Inventaris extends CI_Controller
 			];
 
 			$dataKas = [
-				'kd_transaksi' => $kd_barang,
+				'kd_transaksi' => $kd_barang2 . "/" . $kd_barang1 . "/" . $kd_barang3 . "/" . $kd_barang4,
 				'id_barang' => $id_barang,
 				'id_kategori' => $id_kategori,
 				'id_user' => $petugas,
@@ -87,15 +97,23 @@ class Inventaris extends CI_Controller
 	}
 	public function masukUbah()
 	{
+		$data['array_bln'] = array(1 => "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII");
+		$data['bln'] = $data['array_bln'][date('n')];
 		$data['title'] = 'Ubah Barang Masuk';
 		$data['user'] = $this->db->get_where('tb_user', ['email' =>
 		$this->session->userdata('email')])->row_array();
+		$data['no_otomatis'] = $this->m_inventaris->get_no_otomatis_bm();
 
 		$data['barang'] = $this->m_inventaris->getBarang('masuk');
 		$data['saldo_kas'] = $this->m_keuangan->getSaldoGroupByKategori();
 		$data['bm'] = $this->m_inventaris->bmWhere(['id_barang' => $this->uri->segment(3)])->row_array();
 
+		$this->form_validation->set_rules('no1', 'Kode Barang', 'required');
+		$this->form_validation->set_rules('no2', 'Kode Barang', 'required');
+		$this->form_validation->set_rules('no3', 'Kode Barang', 'required');
+		$this->form_validation->set_rules('no4', 'Kode Barang', 'required');
 		$this->form_validation->set_rules('tgl_pendataan', 'Tanggal', 'required');
+
 		if ($this->form_validation->run() == false) {
 			$this->load->view('templates/header', $data);
 			$this->load->view('templates/sidebar', $data);
@@ -103,6 +121,10 @@ class Inventaris extends CI_Controller
 			$this->load->view('inventaris/masuk-edit', $data);
 			$this->load->view('templates/footer');
 		} else {
+			$kd_barang1 = $this->input->post('no1');
+			$kd_barang2 = $this->input->post('no2');
+			$kd_barang3 = $this->input->post('no3');
+			$kd_barang4 = $this->input->post('no4');
 			$nama_barang = $this->input->post('nama_barang');
 			$tanggal_pendataan = $this->input->post('tgl_pendataan');
 			$petugas = $data['user']['id_user'];
@@ -127,6 +149,7 @@ class Inventaris extends CI_Controller
 				}
 			}
 			$data = [
+				'kode_barang' => $kd_barang2 . "/" . $kd_barang1 . "/" . $kd_barang3 . "/" . $kd_barang4,
 				'nama_barang' => $nama_barang,
 				'id_user' => $petugas,
 				'keterangan' => $keterangan,
@@ -150,15 +173,24 @@ class Inventaris extends CI_Controller
 	}
 	public function keluar()
 	{
+		$data['array_bln'] = array(1 => "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII");
+		$data['bln'] = $data['array_bln'][date('n')];
 		$data['title'] = 'Barang Keluar';
 		$data['user'] = $this->db->get_where('tb_user', ['email' =>
 		$this->session->userdata('email')])->row_array();
+		$data['no_otomatis'] = $this->m_inventaris->get_no_otomatis_bk();
 
 		$data['barang'] = $this->m_inventaris->getBarang('keluar');
 		$data['stok_list'] = $this->m_inventaris->getStokGroupByBarang();
 		$data['bk'] = $this->db->get('tb_inventaris')->result_array();
 
-		$this->form_validation->set_rules('kd_barang', 'Kode Barang', 'required');
+		$this->form_validation->set_rules('no1', 'Kode Barang', 'required');
+		$this->form_validation->set_rules('no2', 'Kode Barang', 'required');
+		$this->form_validation->set_rules('no3', 'Kode Barang', 'required');
+		$this->form_validation->set_rules('no4', 'Kode Barang', 'required');
+		$this->form_validation->set_rules('nama_barang', 'Nama Barang', 'required');
+		$this->form_validation->set_rules('kuantitas', 'Kuantitas Barang', 'required');
+		$this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
 
 		if ($this->form_validation->run() == false) {
 			$this->load->view('templates/header', $data);
@@ -167,7 +199,10 @@ class Inventaris extends CI_Controller
 			$this->load->view('inventaris/keluar', $data);
 			$this->load->view('templates/footer');
 		} else {
-			$kd_barang = $this->input->post('kd_barang');
+			$kd_barang1 = $this->input->post('no1');
+			$kd_barang2 = $this->input->post('no2');
+			$kd_barang3 = $this->input->post('no3');
+			$kd_barang4 = $this->input->post('no4');
 			$nama_barang = $this->input->post('nama_barang');
 			$tanggal_pendataan = $this->input->post('tgl_pendataan');
 			$petugas = $data['user']['id_user'];
@@ -192,7 +227,7 @@ class Inventaris extends CI_Controller
 				}
 			}
 			$data = [
-				'kode_barang' => $kd_barang,
+				'kode_barang' => $kd_barang2 . "/" . $kd_barang1 . "/" . $kd_barang3 . "/" . $kd_barang4,
 				'nama_barang' => $nama_barang,
 				'id_user' => $petugas,
 				'keterangan' => $keterangan,
@@ -209,12 +244,18 @@ class Inventaris extends CI_Controller
 	}
 	public function keluarUbah()
 	{
+		$data['array_bln'] = array(1 => "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII");
+		$data['bln'] = $data['array_bln'][date('n')];
 		$data['title'] = 'Ubah Barang Keluar';
 		$data['user'] = $this->db->get_where('tb_user', ['email' =>
 		$this->session->userdata('email')])->row_array();
 		$data['bk'] = $this->m_inventaris->bmWhere(['id_barang' => $this->uri->segment(3)])->row_array();
+		$data['no_otomatis'] = $this->m_inventaris->get_no_otomatis_bk();
 
-		$this->form_validation->set_rules('kd_barang', 'Kode Barang', 'required');
+		$this->form_validation->set_rules('no1', 'Kode Barang', 'required');
+		$this->form_validation->set_rules('no2', 'Kode Barang', 'required');
+		$this->form_validation->set_rules('no3', 'Kode Barang', 'required');
+		$this->form_validation->set_rules('no4', 'Kode Barang', 'required');
 		$this->form_validation->set_rules('nama_barang', 'Nama Barang', 'required');
 		$this->form_validation->set_rules('kuantitas', 'Kuantitas Barang', 'required');
 		$this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
@@ -225,7 +266,10 @@ class Inventaris extends CI_Controller
 			$this->load->view('inventaris/keluar-edit', $data);
 			$this->load->view('templates/footer');
 		} else {
-			$kd_barang = $this->input->post('kd_barang');
+			$kd_barang1 = $this->input->post('no1');
+			$kd_barang2 = $this->input->post('no2');
+			$kd_barang3 = $this->input->post('no3');
+			$kd_barang4 = $this->input->post('no4');
 			$nama_barang = $this->input->post('nama_barang');
 			$tanggal_pendataan = $this->input->post('tgl_pendataan');
 			$petugas = $data['user']['id_user'];
@@ -250,7 +294,7 @@ class Inventaris extends CI_Controller
 				}
 			}
 			$data = [
-				'kode_barang' => $kd_barang,
+				'kode_barang' => $kd_barang2 . "/" . $kd_barang1 . "/" . $kd_barang3 . "/" . $kd_barang4,
 				'nama_barang' => $nama_barang,
 				'id_user' => $petugas,
 				'keterangan' => $keterangan,

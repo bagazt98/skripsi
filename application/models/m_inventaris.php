@@ -57,6 +57,39 @@ class m_inventaris extends CI_Model
 
         return $stokBarang;
     }
+
+    public function get_no_otomatis_bm()
+    {
+        $q = $this->db->query("SELECT LEFT(kode_barang,3) AS kd_max FROM tb_inventaris WHERE MONTH(tgl_pendataan)=MONTH(NOW()) ORDER BY id_barang DESC LIMIT 1");
+        $kd = "";
+        if ($q->num_rows() > 0) {
+            foreach ($q->result() as $k) {
+                $tmp = ((int)$k->kd_max) + 1;
+                $kd = sprintf("%03s", $tmp);
+            }
+        } else {
+            $kd = "001";
+        }
+        date_default_timezone_set('Asia/Jakarta');
+        return $kd;
+    }
+
+    public function get_no_otomatis_bk()
+    {
+        $q = $this->db->query("SELECT LEFT(kode_barang,3) AS kd_max FROM tb_inventaris WHERE MONTH(tgl_pendataan)=MONTH(NOW()) ORDER BY id_barang DESC LIMIT 1");
+        $kd = "";
+        if ($q->num_rows() > 0) {
+            foreach ($q->result() as $k) {
+                $tmp = ((int)$k->kd_max) + 1;
+                $kd = sprintf("%03s", $tmp);
+            }
+        } else {
+            $kd = "001";
+        }
+        date_default_timezone_set('Asia/Jakarta');
+        return $kd;
+    }
+
     public function inputDataBarang($data)
     {
         return $this->db->insert('tb_inventaris', $data) ? true : false;

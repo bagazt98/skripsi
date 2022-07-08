@@ -65,9 +65,20 @@
 				<form action="<?= base_url('inventaris/masuk'); ?>" method="post" enctype="multipart/form-data">
 					<div class="modal-body">
 
-						<input type="hidden" name="kode_barang" id="kode_barang" value="KB">
-						<input type="hidden" name="id_barang" id="id_barang" value="<?= $kdBrg; ?>">
-						<input type="hidden" name="hash" id="hash" value="">
+						<div class="form-group mb-3" style="margin-left:12px">
+							<div class="form-group row">
+								<input type="text" class="form-control col-lg-3" id="no2" name="no2" value="<?= $no_otomatis; ?>">/
+								<input type="text" class="form-control col-lg-2" id="no1" name="no1" value="BM">/
+								<select name="no3" id="no3" class="form-control col-lg-3">
+									<?php foreach ($array_bln as $b) { ?>
+										<option value="<?= $b; ?>" <?php if ($b == $bln) {
+																		echo "selected";
+																	} ?>><?= $b; ?></option>
+									<?php } ?>
+								</select>/
+								<input type="text" class="form-control col-lg-2" id="no4" name="no4" value="<?= date('Y'); ?>">
+							</div>
+						</div>
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">

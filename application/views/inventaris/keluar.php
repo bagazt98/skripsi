@@ -65,9 +65,22 @@
 				<form action="<?= base_url('inventaris/keluar'); ?>" method="post" enctype="multipart/form-data">
 					<div class="modal-body">
 
+						<div class="form-group mb-3" style="margin-left:12px">
+							<div class="form-group row">
+								<input type="text" class="form-control col-lg-3" id="no2" name="no2" value="<?= $no_otomatis; ?>">/
+								<input type="text" class="form-control col-lg-2" id="no1" name="no1" value="BK">/
+								<select name="no3" id="no3" class="form-control col-lg-3">
+									<?php foreach ($array_bln as $b) { ?>
+										<option value="<?= $b; ?>" <?php if ($b == $bln) {
+																		echo "selected";
+																	} ?>><?= $b; ?></option>
+									<?php } ?>
+								</select>/
+								<input type="text" class="form-control col-lg-2" id="no4" name="no4" value="<?= date('Y'); ?>">
+							</div>
+						</div>
 						<div class="row">
 							<div class="col-md-6">
-								<input type="hidden" name="kd_barang" id="kd_barang" value="BK">
 								<div class="form-group">
 									<label for="date">Tanggal *</label>
 									<input type="date" id="date" name="tgl_pendataan" class="form-control" required="required">
