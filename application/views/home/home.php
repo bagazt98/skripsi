@@ -94,7 +94,7 @@
 						<a href="<?= base_url('home/post/') . $s['id']; ?>"><img max-width="80%" height="300px" width="250px" src="<?= base_url('assets/img/berita/') . $s['gambar']; ?>" class="card-img-top" alt=""></a>
 						<div class="card-body">
 							<h5 class="card-title"><?= $s['judul_berita']; ?></h5>
-							<p class="card-text">by. <small class="text-muted"><?= $s['name']; ?></small></p>
+							<p class="card-text"><small class="text-muted"><?= $s['name']; ?></small></p>
 						</div>
 					</div>
 				</div>
